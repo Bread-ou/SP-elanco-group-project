@@ -3,6 +3,7 @@ html, body {
     padding: 0;
 }
 
+
 p {
     padding: 0 10px;
     line-height: 1.8;
@@ -22,13 +23,12 @@ div#header {
     position: relative;
 }
 
-div#header h1 {
-    height: 80px;
-    line-height: 80px;
-    margin: 0;
-    padding-left: 10px;
-    background: #e0e0e0;
-    color: #2440cb;
+.centreimage{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
 }
 
 div#header a {
@@ -36,11 +36,11 @@ div#header a {
     right: 0;
     top: 23px;
     padding: 10px;
-    color: #006;
+    color: #02253e;
 }
 
 div#navigation {
-    background-color: #333;
+    background-color: #02253e;
     overflow: hidden;
 }
 
@@ -52,10 +52,15 @@ div#navigation li {
 div#footer {
     background: #42444e;
     color: #fff;
+    position: fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    text-align: center;
 }
 
 div#footer p {
-    padding: 20px 10px;
+    padding: 5px 5px;
 }
 
 div#navigation {
@@ -88,6 +93,6 @@ color: black;
 }
 
 .navigation a.active {
-background-color: #200aea;
+background-color: #02253e;
 color: white;
 }
