@@ -3,12 +3,6 @@ html, body {
     padding: 0;
 }
 
-body {
-    color: #292929;
-    font: 90% Roboto, Arial, sans-serif;
-    font-weight: 300;
-}
-
 p {
     padding: 0 10px;
     line-height: 1.8;
