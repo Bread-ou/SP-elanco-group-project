@@ -2,6 +2,39 @@
 <html>
 <head>
   <title>Image Labels</title>
+  <style>
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+    .image {
+        flex: 1;
+    }
+    .labels {
+        flex: 1;
+        padding-left: 20px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .high-confidence {
+        color: green;
+        font-weight: bold;
+    }
+    .medium-confidence {
+        color: orange;
+        font-weight: bold;
+    }
+    .low-confidence {
+        color: red;
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
   
@@ -10,11 +43,21 @@
     <img src="<%= imageUrl %>">
   </div>
   <div>
-  <ul>
-    <% labels.forEach(function(label) { %>
-      <li><%= label.description %> - <%= label.score.toFixed(2) %></li>
-    <% }); %>
-  </ul>
+    <h1>Labels:</h1>
+    <ul class="labels-list">
+        <% sortedLabels.forEach(label => { %>
+            <li>
+                <%= label.description %>
+                <% if (label.score >= 0.8) { %>
+                    <span class="confidence high-confidence">(High confidence)</span>
+                <% } else if (label.score >= 0.6) { %>
+                    <span class="confidence medium-confidence">(Medium confidence)</span>
+                <% } else { %>
+                    <span class="confidence low-confidence">(Low confidence)</span>
+                <% } %>
+            </li>
+        <% }) %>
+    </ul>
   </div>
 </body>
 </html>
