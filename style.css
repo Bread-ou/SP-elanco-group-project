@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-family: "Poppins", sans-serif;
 }
 
 p {
@@ -66,6 +67,32 @@ div#content{
     margin: 3.12em auto;
     padding: 3.12em 1.25em;
     border-radius: 0.43em;
-    box-shadow: 0 1.25em 2.18em #0072CE;
+    box-shadow: 0 1.25em 2.18em #4d4e50;
 }
 
+input[type="file"]{
+    display: none;
+
+}
+
+label{
+    display:block;
+    position:relative;
+    background-color: #0072CE;
+    color: #fff;
+    font-size: 1.12em;
+    font-weight:500px;
+    text-align:center;
+    width:18.75em;
+    padding:1.12em 0;
+    margin:auto;
+    border-radius:0.31em;
+    cursor:pointer;
+}
+
+#num-of-files{
+    font-weight: 400px;
+    text-align: center;
+    margin:1.25em 0 1.87 0;
+    
+}

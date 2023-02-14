@@ -8,7 +8,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
-      
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
 <body>
     <div id="header">
@@ -17,9 +17,12 @@
 
     <div class="container">
         <input type="file" id="file-input" multiple>
+        <label for="file-input"><i class="fa-solid fa-upload"></i>
+        &nbsp; Choose Files to Upload.
+        </label>
+        <div id="num-of-files">No Files Chosen</div>
 
     </div>
-
 
 <div id="extra">
     <p><strong>Links to External Elanco Site</strong></p>
@@ -34,5 +37,6 @@
 <div id="footer">
     <p>Footer</p>
 </div>
+<script src="script.js"></script>
 </body>
 </html>
