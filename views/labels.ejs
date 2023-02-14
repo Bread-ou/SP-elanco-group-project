@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Labels</title>
+</head>
+<body>
+  
+  <div>
+    <h2>Image :</h2>
+    <img src="<%= imageUrl %>">
+  </div>
+  <div>
+  <ul>
+    <% labels.forEach(function(label) { %>
+      <li><%= label.description %> - <%= label.score.toFixed(2) %></li>
+    <% }); %>
+  </ul>
+  </div>
+</body>
+</html>
