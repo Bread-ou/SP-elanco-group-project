@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const multer = require('multer')
 const path = require ('path')
+const PORT = process.env.PORT || 3000
 
 // Image storage method.
 const storage = multer.diskStorage({
@@ -29,4 +30,6 @@ app.post('/upload', upload.single('image'), (req,res)=>{
     res.send("Image Uploaded")
 })
 
-app.listen(3000)
+app.listen(PORT, ()=>{
+    console.log("The server is running on port number: "+PORT)
+})
