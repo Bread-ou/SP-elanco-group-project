@@ -1,32 +1,27 @@
 // Requirments to run the sever.
 const express = require('express')
 const app = express()
-const multer = require('multer')
-const path = require ('path')
+const uploadRouter = require('./routes/upload')
+const PORT = process.env.PORT || 3000
 
-// Image storage method.
-const storage = multer.diskStorage({
-    destination: (req, file, cb) =>{
-        cb(null, 'images')
-    },
-    filename: (req, file, cb) => {
-        console.log(file)
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
-const upload = multer({storage: storage})
 
 // Setting up the view engine.
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
+app.use('/images', express.static('images'))
 
-app.get('/upload', (req, res)=> {
-    res.render('index')
+
+
+// Set up a redirect from the root URL to the upload page instead.
+app.get('/', (req, res) => {
+    res.redirect('/upload')
 })
 
-app.post('/upload', upload.single('image'), (req,res)=>{
-    res.send("Image Uploaded")
-})
+// Use the uploadRouter for requests to /upload
+app.use('/upload', uploadRouter)
 
-app.listen(3000)
+
+app.listen(PORT, ()=>{
+    console.log("The server is running on port number: "+PORT)
+})
