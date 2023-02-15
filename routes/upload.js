@@ -3,7 +3,8 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const path = require ('path')
-const fs = require('fs')
+const fileSave = require('../database/fileSave.js')
+
 
 // Google cloud vision setup.
 const vision = require('@google-cloud/vision')
@@ -42,34 +43,11 @@ router.post('/', upload.single('image'), async (req,res)=>{
   const imageUrl = '/images/' + path.basename(req.file.path)
 
   // Save image 
-  saveImage(sortedLabels, imageUrl)
+  fileSave.saveRawLabels(sortedLabels, imageUrl)
+  // Write func
 
   // Render labels ejs file and pass on the sorted labels and image.
   res.render('labels', { sortedLabels, imageUrl });
 })
-
-function saveImage(sortedLabels, imageUrl) {
-    const imageInfo = {
-        labels: sortedLabels,
-        imageUrl: imageUrl,
-      }
-      fs.readFile('imageInfo.json', (err, data) => {
-        if (err) {
-          fs.writeFile('imageInfo.json', JSON.stringify([imageInfo]), (err) => {
-            if (err) {
-              console.log(err)
-            }
-          });
-        } else {
-          const json = JSON.parse(data);
-          json.push(imageInfo)
-          fs.writeFile('imageInfo.json', JSON.stringify(json), (err) => {
-            if (err) {
-              console.log(err)
-            }
-          })
-        }
-      })
-}
 
 module.exports = router
