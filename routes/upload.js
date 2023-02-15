@@ -4,6 +4,7 @@ const router = express.Router()
 const multer = require('multer')
 const path = require ('path')
 const fileSave = require('../database/fileSave.js')
+const labelChecker = require('../database/labelNameCheck')
 
 
 // Google cloud vision setup.
@@ -39,15 +40,16 @@ router.post('/', upload.single('image'), async (req,res)=>{
   })
   // Sort the labels in order of highest confidence.
   // TODO: Check if it does that alredy.
-  const sortedLabels = labels.sort((a, b) => b.score - a.score)
+  let sortedLabels = labels.sort((a, b) => b.score - a.score)
   const imageUrl = '/images/' + path.basename(req.file.path)
 
   // Save raw images. 
   fileSave.saveRawLabels(sortedLabels, imageUrl)
   // TODO: Write a function to iterate through labels map and compare and remove unnecessary labels.
+  const newLabels = labelChecker.filterLabels(sortedLabels)
 
   // Render labels ejs file and pass on the sorted labels and image.
-  res.render('labels', { sortedLabels, imageUrl });
+  res.render('labels', {newLabels, imageUrl });
 })
 
 module.exports = router

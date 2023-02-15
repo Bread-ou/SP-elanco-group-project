@@ -45,7 +45,7 @@
   <div>
     <h1>Labels:</h1>
     <ul class="labels-list">
-        <% sortedLabels.forEach(label => { %>
+        <% newLabels.forEach(label => { %>
             <li>
                 <%= label.description %>
                 <% if (label.score >= 0.8) { %>
