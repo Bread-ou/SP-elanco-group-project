@@ -1,63 +1,98 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Image Labels</title>
-  <style>
-    .container {
-        display: flex;
-        flex-direction: row;
-    }
-    .image {
-        flex: 1;
-    }
-    .labels {
-        flex: 1;
-        padding-left: 20px;
-    }
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    li {
-        margin-bottom: 10px;
-    }
-    .high-confidence {
-        color: green;
-        font-weight: bold;
-    }
-    .medium-confidence {
-        color: orange;
-        font-weight: bold;
-    }
-    .low-confidence {
-        color: red;
-        font-weight: bold;
-    }
-</style>
+    <title>Image Labels</title>
+    <link href="/views/style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-  
-  <div>
-    <h2>Image :</h2>
-    <img src="<%= imageUrl %>">
-  </div>
-  <div>
-    <h1>Labels:</h1>
-    <ul class="labels-list">
-        <% sortedLabels.forEach(label => { %>
-            <li>
-                <%= label.description %>
-                <% if (label.score >= 0.8) { %>
-                    <span class="confidence high-confidence">(High confidence)</span>
-                <% } else if (label.score >= 0.6) { %>
-                    <span class="confidence medium-confidence">(Medium confidence)</span>
-                <% } else { %>
-                    <span class="confidence low-confidence">(Low confidence)</span>
-                <% } %>
-            </li>
-        <% }) %>
-    </ul>
-  </div>
+
+    <div id="header">
+        <img src="views\elanco_logo.png" alt="logo" class="centreimage" />
+    </div>
+    <div class="Title">
+        Summary
+    </div>
+    <div class="row">
+        <div class="imagewrapper">
+            <img src="<%= imageUrl %>">
+        </div>
+
+        <div class="textwrapper">
+            <% sortedLabels.forEach(label=> { %>
+
+                <span class="Labeldesc"> <b>
+                        <%= label.description %>:
+                    </b> </span>
+                <% if (label.score>= 0.8) { %>
+                    <span class="confidence">High confidence</span>
+                    <% } else if (label.score>= 0.6) { %>
+                        <span class="confidence">Medium confidence</span>
+                        <% } else { %>
+                            <span class="confidence">Low confidence</span>
+
+                            <% } %>
+                                <br>
+                                <% })%>
+        </div>
+    </div>
+
+    </div>
+    <div class="backgroundHere">
+    </div>
+
+
+    <div class="firstFooter">
+        <div class="firstFooterContainer">
+            <div class="Header">
+                Our Company
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/about-us/about-elanco">We Are
+                    Elanco</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/about-us/our-journey">Our
+                    Journey</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/about-us/culture-and-values">Culture
+                    Journey</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/about-us/our-people">Our People</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/sustainability">Sustainability</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/sustainability/the-foundation">Elanco Foundation</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;" href="https://www.elanco.com/en-us/contact">Contact</a>
+            </div>
+            <div class="footer-text">
+                <a style="text-decoration: none; color: white;"
+                    href="https://www.elanco.com/en-us/suppliers">Suppliers</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="secondFooter">
+    </div>
+
 </body>
+
 </html>
