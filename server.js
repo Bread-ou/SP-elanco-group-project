@@ -1,3 +1,5 @@
+
+
 // Requirments to run the sever.
 const express = require('express')
 const app = express()
@@ -11,7 +13,7 @@ app.set('views', __dirname + '/views')
 
 app.use('/images', express.static('images'))
 
-app.use("/views",express.static(__dirname + "/views"));
+
 
 
 
@@ -27,3 +29,5 @@ app.use('/upload', uploadRouter)
 app.listen(PORT, ()=>{
     console.log("The server is running on port number: "+PORT)
 })
+
+app.use("/views",express.static(__dirname + "/views"));
