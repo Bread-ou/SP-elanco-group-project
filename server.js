@@ -11,6 +11,8 @@ app.set('views', __dirname + '/views')
 
 app.use('/images', express.static('images'))
 
+app.use("/views",express.static(__dirname + "/views"));
+
 
 
 // Set up a redirect from the root URL to the upload page instead.
