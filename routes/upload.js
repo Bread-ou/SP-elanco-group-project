@@ -42,9 +42,9 @@ router.post('/', upload.single('image'), async (req,res)=>{
   const sortedLabels = labels.sort((a, b) => b.score - a.score)
   const imageUrl = '/images/' + path.basename(req.file.path)
 
-  // Save image 
+  // Save raw images. 
   fileSave.saveRawLabels(sortedLabels, imageUrl)
-  // Write func
+  // TODO: Write a function to iterate through labels map and compare and remove unnecessary labels.
 
   // Render labels ejs file and pass on the sorted labels and image.
   res.render('labels', { sortedLabels, imageUrl });
