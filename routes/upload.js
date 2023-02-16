@@ -39,8 +39,9 @@ router.post('/', upload.single('image'), async (req,res)=>{
     return { description: label.description, score: label.score }
   })
   // Sort the labels in order of highest confidence.
+  
   // TODO: Check if it does that alredy.
-  let sortedLabels = labels.sort((a, b) => b.score - a.score)
+  const sortedLabels = labels.sort((a, b) => b.score - a.score)
   const imageUrl = '/images/' + path.basename(req.file.path)
 
   // Save raw images. 

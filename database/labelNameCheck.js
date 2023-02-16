@@ -7,7 +7,7 @@ const labelNamesSet = new Set()
 fs.createReadStream('./animals.csv')
   .pipe(csv())
   .on('data', (row) => {
-    labelNamesSet.add(row)
+    labelNamesSet.add(row.Animals)
   })
   .on('end', () => {
     console.log('CSV file read')
@@ -15,17 +15,17 @@ fs.createReadStream('./animals.csv')
 
 // Function used to filter the labels.
 function filterLabels(labels){
-    const filteredLabels = [];
-    labels.forEach((label) => {
-        console.log('label.description:', label.description);
-        labelNamesSet.forEach((animalName) => {
-            console.log('animalName:', animalName);
-            if (label.description === (animalName)) {
-                filteredLabels.push(label);
-            }
-        });
-    });
-    return filteredLabels;
+  const filteredLabels = []
+  labels.forEach((label) => {
+    //console.log('label.description:', label.description)
+    labelNamesSet.forEach((animalName) => {
+    //console.log('animalName:', animalName)
+      if (label.description === (animalName)) {
+        filteredLabels.push(label)
+      }
+    })
+  })
+    return filteredLabels
 }
 
 module.exports = {
