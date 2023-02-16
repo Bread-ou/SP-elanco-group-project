@@ -28,7 +28,20 @@ function filterLabels(labels){
     return filteredLabels
 }
 
+function seperateLabels(newLabels, oldLabels){
+  const unfilteredLabels = []
+  oldLabels.forEach((oldLabel) =>{
+    newLabels.forEach((newLabel) => {
+      if (!(oldLabel.description.includes(newLabel.description))) {
+        unfilteredLabels.push(oldLabel)
+      }
+    })
+  })
+    return unfilteredLabels
+}
+
 module.exports = {
     labelNamesSet,
-    filterLabels
+    filterLabels,
+    seperateLabels
 }
