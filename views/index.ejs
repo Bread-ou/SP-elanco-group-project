@@ -15,10 +15,10 @@
     </div>
     <div class="container">
 
-        <form method="POST" action="/upload" enctype="multipart/form-data">
+        <form method="post" action="/upload" enctype="multipart/form-data">
             <label for="image">Select a file</label>
-            <input type="file" name="image" id="image">
-            <input type="submit">
+            <input type="file" name="image" id="image" required>
+            <input type="submit" name="submit" id="submit-button">
         </form>
 
     </div>

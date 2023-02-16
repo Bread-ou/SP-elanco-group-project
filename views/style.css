@@ -345,3 +345,43 @@ a:visited {
     font-size: 40px;
     font-weight: 1600px;
 }
+
+
+#submit-button {
+    display: block;
+    position: relative;
+    background-color: #0072CE;
+    color: #fff;
+    font-size: 1.12em;
+    font-weight: 500px;
+    text-align: center;
+    width: 18.75em;
+    padding: 1.12em 0;
+    margin: auto;
+    border-radius: 0.31em;
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+#submit-button.disabled {
+    display: block;
+    position: relative;
+    background-color: #0072CE;
+    color: #fff;
+    font-size: 1.12em;
+    font-weight: 500px;
+    text-align: center;
+    width: 18.75em;
+    padding: 1.12em 0;
+    margin: auto;
+    border-radius: 0.31em;
+    cursor: pointer;
+    margin-top: 2%;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Takes the image upload and checks invalid, if invalid it changes style of submit */
+input[name="image"]:invalid+input[name="submit"] {
+    visibility: hidden;
+}
