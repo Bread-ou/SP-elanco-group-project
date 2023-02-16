@@ -5,8 +5,6 @@ const multer = require('multer')
 const path = require ('path')
 const fileSave = require('../database/fileSave.js')
 const labelChecker = require('../database/labelNameCheck')
-
-
 // Google cloud vision setup.
 const vision = require('@google-cloud/vision')
 const client = new vision.ImageAnnotatorClient({
@@ -39,7 +37,6 @@ router.post('/', upload.single('image'), async (req,res)=>{
     return { description: label.description, score: label.score }
   })
   // Sort the labels in order of highest confidence.
-  
   // TODO: Check if it does that alredy.
   let sortedLabels = labels.sort((a, b) => b.score - a.score)
   const imageUrl = '/images/' + path.basename(req.file.path)
@@ -51,6 +48,7 @@ router.post('/', upload.single('image'), async (req,res)=>{
   sortedLabels = labelChecker.seperateLabels(newLabels, sortedLabels)
   // Render labels ejs file and pass on the sorted labels and image.
   res.render('labels', {newLabels,sortedLabels, imageUrl });
+
 })
 
 module.exports = router

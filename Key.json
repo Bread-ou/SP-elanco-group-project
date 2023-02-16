@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "elanco-node-test-project",
+  "private_key_id": "ed34386c3527aae9a3cc03f7080847a7d1b22856",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDFSyXtIZ41t7Xi\n8fZeHVhZDDmuSFHqcjHSAScHivMaGdBzGfFPujE4Hvb0wQsNscFX3DBn72pWobvJ\nywS8Vir4i7xrBt/vKVp5fRA6zYI/NDBL+K3sF3qNvp5JF3cdUQ1vX8J9CEBzc8Zj\nfX0YwMovyCxEfI1HmDEcS0B7mkviOzpZtHED0i0lfs1vcrxqzkFHz/qW58CPsiw1\neGHyFYRD6PvUB36AbMBXQGz2VvDvwB8RMEdHdXWID0cmmnSFUBtzmEQOg61oWMpT\nO2IyFl0lFha+WMLJIlXQOWojc/woOisxkc6KuWR1TqQl1kfUDkwI755JD1gw0YfJ\n1Fo8jgZZAgMBAAECggEAD+FDlTmefV5jEng9R0f/Y3N7dQ63ITK91dRn6tCBTrmD\nMLCG3s7yxTygzgR3uktzb3n2n3cCzSRJdC2WHP6miMjeipLMFXjzolGxq7n84M93\nj7XdceJV5/DO1r0/xilO9obzpZKzdVd9QWbJWeOyonPvNDf+OyQB1/AqqYg60WOk\nyaLwEvYijpRlYS2wK5HjOQsnd+zfUf7tOawEANy5pTAGqyGI5d7/Z+aK8lxbJtl3\nEM/YvwD2ZNCSgR7JZ2RnnhOrLiUz19rmGpLDId5dkmqTgNroNsc9GkaF5B9Jx3RB\n/M51ZUXvHYem+UTQmhlsQihSkxOQDs4FyiJZ2WLw/QKBgQDug57kK8Na8OK/sqBI\ngbxM45LPNRJV6wP+PirlEMqKanFp2EplTz01FvGEQkAvZr+gz18Lb118eXmjvIHq\n/fnLQGzIwK3Crl2d0Br6hZXFrBZsUCbqrsQdRUh5YT7GhQcyhi4XelBs2VWpPgpL\n09Pl80tbm62SrpkWecfHbm1V/wKBgQDTweif6+WX4qSxsf8VjdRUoakgKu3EYhWK\nGNNmao0ZTTqfXse5qe94R9U/6wLVX9Fft8Bd0qwePgye0aV+aAtIwFUC9OiaEMRJ\nm5e1PnV07eb3q6nPF28p9WMshGtf65rzkhVT+iq7XCp1A0aH61vRspxQfTuSPgfi\nCsnxBCcTpwKBgGgawPZ8d4cxDvd3AujC36p7xi90zaz8qECHZ/eVbaIetaPqSQaR\nIHkUq5P7ysIlycxp1uVJ1XcoGkSyWc50zlu9of25w93ud2QTWkMwnV+rLhpWnbXf\nVDAmdmysWlcR50NRN7r9oy7vaak2MA5KxflfSOwSNh+I377kpqNQep6HAoGAfRHm\nh64YqSDgDWQIOX7Pjjz9W1Z/oKId/razBaahN/R5T2/3nx1Tp0MmHN59ifFSBKrP\nH5sytZoIcjV4/bQOFiYjD9//EiAdDyyq6g296hYpeNcXMI2yxqF8tepwUPMjTgFW\nP4defdLt8LbCjbzhOnW4BYIyESo6FbQxmfzN57kCgYArZucckki5oMmFBL26pi9P\nHJTqTRFbZ4jBkjJy5ICZ7ZigPOTLTSXPmgg+JtslMYUhWjVTku6lnoH9DyIEPPaX\nlrqmRAkmL3Z9hK3lnjnNRWk9ik0cMRF1PlXPAh0+VYWIKRs7CZj1H251VG+pwlBi\njNzkMSisyj+fOreC2VQ27A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "elancog1@elanco-node-test-project.iam.gserviceaccount.com",
+  "client_id": "102905081186388870844",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/elancog1%40elanco-node-test-project.iam.gserviceaccount.com"
+}
