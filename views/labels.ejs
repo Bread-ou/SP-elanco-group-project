@@ -43,7 +43,24 @@
     <img src="<%= imageUrl %>">
   </div>
   <div>
-    <h1>Labels:</h1>
+    <h2>Filtered Labels:</h2>
+    <ul class="labels-list">
+        <% newLabels.forEach(label => { %>
+            <li>
+                <%= label.description %>
+                <% if (label.score >= 0.8) { %>
+                    <span class="confidence high-confidence">(High confidence)</span>
+                <% } else if (label.score >= 0.6) { %>
+                    <span class="confidence medium-confidence">(Medium confidence)</span>
+                <% } else { %>
+                    <span class="confidence low-confidence">(Low confidence)</span>
+                <% } %>
+            </li>
+        <% }) %>
+    </ul>
+  </div>
+  <div>
+    <h2>Unfiltered Labels:</h2>
     <ul class="labels-list">
         <% sortedLabels.forEach(label => { %>
             <li>

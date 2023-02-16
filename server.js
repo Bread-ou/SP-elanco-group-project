@@ -21,9 +21,10 @@ app.get('/', (req, res) => {
 // Use the uploadRouter for requests to /upload
 app.use('/upload', uploadRouter)
 
+app.use("/views",express.static(__dirname + "/views"));
 
 app.listen(PORT, ()=>{
     console.log("The server is running on port number: "+PORT)
 })
 
-app.use("/views",express.static(__dirname + "/views"));
+
