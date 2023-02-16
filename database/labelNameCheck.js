@@ -20,7 +20,7 @@ function filterLabels(labels){
     //console.log('label.description:', label.description)
     labelNamesSet.forEach((animalName) => {
     //console.log('animalName:', animalName)
-      if (label.description === (animalName)) {
+      if (label.description.includes(animalName)) {
         filteredLabels.push(label)
       }
     })
