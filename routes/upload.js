@@ -44,13 +44,17 @@ router.post('/', upload.single('image'), async (req,res)=>{
   let sortedLabels = labels.sort((a, b) => b.score - a.score)
   const imageUrl = '/images/' + path.basename(req.file.path)
 
-  // Save raw images. 
-  fileSave.saveRawLabels(sortedLabels, imageUrl)
   // TODO: Write a function to iterate through labels map and compare and remove unnecessary labels.
   const newLabels = labelChecker.filterLabels(sortedLabels)
   sortedLabels = labelChecker.seperateLabels(newLabels, sortedLabels)
+
+  // Save both types of labels in seperate json files. 
+  fileSave.saveLabels(sortedLabels, imageUrl, 'unfilteredLabels.json')
+  fileSave.saveLabels(newLabels, imageUrl, 'filteredLabels.json')
+
+
   // Render labels ejs file and pass on the sorted labels and image.
-  res.render('labels', {newLabels,sortedLabels, imageUrl });
+  res.render('labels', {newLabels, sortedLabels, imageUrl });
 })
 
 module.exports = router

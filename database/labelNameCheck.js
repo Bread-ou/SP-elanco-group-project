@@ -25,20 +25,35 @@ function filterLabels(labels){
       }
     })
   })
+  console.log(labels)
     return filteredLabels
 }
 
+// function seperateLabels(newLabels, oldLabels){
+//   const unfilteredLabels = []
+//   oldLabels.forEach((oldLabel) =>{
+//     newLabels.forEach((newLabel) => {
+//       if (!(oldLabel.description === newLabel.description)) {
+//         unfilteredLabels.push(oldLabel)
+        
+//       }
+//     })
+//   }) 
+//     return unfilteredLabels
+// }
+
 function seperateLabels(newLabels, oldLabels){
-  const unfilteredLabels = []
-  oldLabels.forEach((oldLabel) =>{
-    newLabels.forEach((newLabel) => {
-      if (!(oldLabel.description.includes(newLabel.description))) {
-        unfilteredLabels.push(oldLabel)
-      }
-    })
+  newLabels.forEach((newLabel) =>{
+    oldLabels.forEach((oldLabel, index) => {
+    if (oldLabel.description === newLabel.description){
+      console.log(oldLabel)
+      oldLabels.splice(index, 1)
+    }
   })
-    return unfilteredLabels
+})
+return oldLabels
 }
+
 
 module.exports = {
     labelNamesSet,
