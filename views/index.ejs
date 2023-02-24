@@ -4,13 +4,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title Page</title>
-</head>
-<body>
-    <h1>Welcome to the Machine Learning Experiance</h1>
-    <h2>Upload image</h2>
-    <form method="POST" action="/upload" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <input type="submit">
-    </form>
-</body>
-</html>
+    </head>
+    <body>
+        <h1>Welcome to the Machine Learning Experience</h1>
+        <h2>Upload image</h2>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="image" onchange="previewImage(event)">
+            <img id="preview" src="#" alt="Preview" style="display:none;">
+            <br>
+            <input type="submit">
+        </form>
+        <script>
+            function previewImage(event) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var preview = document.getElementById('preview');
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
+    </body>
+    </html>
