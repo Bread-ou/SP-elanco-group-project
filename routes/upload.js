@@ -24,7 +24,21 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage: storage})
+// Multer configuration
+// TODO: handle the response properly.
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 4000000
+        },
+        fileFilter(req, file, cb) {
+        if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+        return cb( new Error('Please upload a valid image file'))
+        }
+        cb(undefined, true)
+        }
+
+})
 
 // Get the index page to render.
 router.get('/', (req, res)=> {
