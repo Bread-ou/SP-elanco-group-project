@@ -29,19 +29,6 @@ function filterLabels(labels){
     return filteredLabels
 }
 
-// function seperateLabels(newLabels, oldLabels){
-//   const unfilteredLabels = []
-//   oldLabels.forEach((oldLabel) =>{
-//     newLabels.forEach((newLabel) => {
-//       if (!(oldLabel.description === newLabel.description)) {
-//         unfilteredLabels.push(oldLabel)
-        
-//       }
-//     })
-//   }) 
-//     return unfilteredLabels
-// }
-
 function seperateLabels(newLabels, oldLabels){
   newLabels.forEach((newLabel) =>{
     oldLabels.forEach((oldLabel, index) => {

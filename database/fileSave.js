@@ -1,5 +1,6 @@
 const fs = require('fs')
 
+// Function used to save the labels to a JSON file.
 function saveLabels(sortedLabels, imageUrl, fileName) {
   const imageInfo = {
       labels: sortedLabels,
