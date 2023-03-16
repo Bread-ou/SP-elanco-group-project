@@ -4,26 +4,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title Page</title>
-    </head>
-    <body>
-        <h1>Welcome to the Machine Learning Experience</h1>
-        <h2>Upload image</h2>
-        <form method="POST" action="/upload" enctype="multipart/form-data">
-            <input type="file" name="images" accept="image/*" multiple onchange="previewImage(event)">
-            <img id="preview" src="#" alt="Preview" style="display:none;">
-            <br>
-            <input type="submit">
-        </form>
-        <script>
-            function previewImage(event) {
+    <style>
+        .thumbnails-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .thumbnail {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Machine Learning Experience</h1>
+    <h2>Upload image</h2>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="images" accept="image/*" multiple onchange="previewImage(event)">
+        <div id="thumbnails" class="thumbnails-container"></div>
+        <br>
+        <input type="submit">
+    </form>
+    <script>
+        function previewImage(event) {
+            var thumbnailsContainer = document.getElementById('thumbnails');
+            thumbnailsContainer.innerHTML = ''; // Clear the thumbnails container
+
+            for (var i = 0; i < event.target.files.length; i++) {
+                var file = event.target.files[i];
                 var reader = new FileReader();
-                reader.onload = function() {
-                    var preview = document.getElementById('preview');
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(event.target.files[0]);
+
+                reader.onload = (function(file) {
+                    return function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('thumbnail');
+                        img.alt = 'Thumbnail';
+                        thumbnailsContainer.appendChild(img);
+                    };
+                })(file);
+
+                reader.readAsDataURL(file);
             }
-        </script>
-    </body>
-    </html>
+        }
+    </script>
+</body>
+</html>

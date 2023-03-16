@@ -53,7 +53,7 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
         const labelsList = []
         const imageUrls = []
 
-        // Loop through all uploaded files
+        // Loop through the images, send API requests and store the responces.
         for(let i=0; i<req.files.length; i++) {
             const file = req.files[i];
             // Send image and return the results from the API.
@@ -64,16 +64,9 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
             // Sort the labels in order of highest confidence.
             let sortedLabels = labels.sort((a, b) => b.score - a.score)
             const imageUrl = '/images/' + path.basename(file.path)
-
-            // TODO: Write a function to iterate through labels map and compare and remove unnecessary labels.
-            const newLabels = labelChecker.filterLabels(sortedLabels)
-            sortedLabels = labelChecker.seperateLabels(newLabels, sortedLabels)
-
-            // Save both types of labels in separate JSON files. 
-            fileSave.saveLabels(sortedLabels, imageUrl, 'unfilteredLabels.json')
-            fileSave.saveLabels(newLabels, imageUrl, 'filteredLabels.json')
-
-            labelsList.push({ newLabels, sortedLabels })
+            
+            // Filter the labels and store both lists in the labelsList.
+            labelsList.push(labelChecker.filterLabels(sortedLabels)) // 
             imageUrls.push(imageUrl)
         }
 
