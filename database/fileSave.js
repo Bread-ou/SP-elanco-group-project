@@ -25,6 +25,18 @@ function saveLabels(sortedLabels, imageUrl, fileName) {
   })
 }
 
+function saveProcessedImg(file){
+  const processedImagePath = 'processedImages/processed' + path.basename(file.path)
+  const out = fs.createWriteStream(processedImagePath)
+  const stream = canvas.createJPEGStream()
+  stream.pipe(out)
+  out.on('finish', () => {
+      console.log('Processed image saved.')
+  })
+  return processedImagePath
+}
+
 module.exports = {
-    saveLabels
+    saveLabels,
+    saveProcessedImg
 }

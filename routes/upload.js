@@ -4,6 +4,7 @@ const router = express.Router()
 const multer = require('multer')
 const path = require ('path')
 const fileSave = require('../database/fileSave.js')
+const imgProcess = require('../database/imgProcess')
 const labelChecker = require('../database/labelNameCheck')
 
 
@@ -52,6 +53,7 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
     if (req.files && req.files.length > 0) {
         const labelsList = []
         const imageUrls = []
+        const processedImageUrls = []
 
         // Loop through the images, send API requests and store the responces.
         for(let i=0; i<req.files.length; i++) {
@@ -61,13 +63,23 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
             const labels = result.labelAnnotations.map(label => {
                 return { description: label.description, score: label.score }
             })
+            // Get object detection results
+            const [objectDetectionResult] = await client.objectLocalization(file.path)
+            const objects = objectDetectionResult.localizedObjectAnnotations
+
+            // Process and save processed IMG.
+            const processedImageUrl = imgProcess.processImg(objects, file)
+
             // Sort the labels in order of highest confidence.
             let sortedLabels = labels.sort((a, b) => b.score - a.score)
             const imageUrl = '/images/' + path.basename(file.path)
             
+            // TODO: LABEL SAVE METHOD MADE OBSOLETE, CHANGE IT TO FIT NEW FORMAT.
+
             // Filter the labels and store both lists in the labelsList.
             labelsList.push(labelChecker.filterLabels(sortedLabels)) // 
             imageUrls.push(imageUrl)
+            processedImageUrls.push(processedImageUrl)
         }
 
         // Render labels.ejs file and pass on the sorted labels and image URLs.
