@@ -1,5 +1,5 @@
 const { createCanvas, loadImage } = require('canvas')
-const imgSave = require('./fileSave')
+const {saveProcessedImg} = require('./fileSave')
 
 
 async function processImg (objects, file) {
@@ -21,8 +21,8 @@ async function processImg (objects, file) {
         ctx.stroke()
         ctx.fillText(object.name, object.boundingPoly.normalizedVertices[0].x * originalImage.width, object.boundingPoly.normalizedVertices[0].y * originalImage.height - 5)
     })
-    return imgSave.saveLabels(file)
-
+    const processedImagePath = saveProcessedImg(file, canvas)
+    return processedImagePath
 }
 
 module.exports = {

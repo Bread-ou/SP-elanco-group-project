@@ -68,7 +68,8 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
             const objects = objectDetectionResult.localizedObjectAnnotations
 
             // Process and save processed IMG.
-            const processedImageUrl = imgProcess.processImg(objects, file)
+            const processedImageUrl = await imgProcess.processImg(objects, file)
+            
 
             // Sort the labels in order of highest confidence.
             let sortedLabels = labels.sort((a, b) => b.score - a.score)
@@ -79,11 +80,13 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
             // Filter the labels and store both lists in the labelsList.
             labelsList.push(labelChecker.filterLabels(sortedLabels)) // 
             imageUrls.push(imageUrl)
+            
+            console.log(processedImageUrl)
             processedImageUrls.push(processedImageUrl)
         }
 
         // Render labels.ejs file and pass on the sorted labels and image URLs.
-        res.render('labels', {labelsList, imageUrls})
+        res.render('labels', {labelsList, imageUrls, processedImageUrls})
     } else {
         // Error handling when no images are uploaded
         res.status(400).send("Please upload at least one valid image")

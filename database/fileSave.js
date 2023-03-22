@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 // Function used to save the labels to a JSON file.
 function saveLabels(sortedLabels, imageUrl, fileName) {
@@ -25,7 +26,8 @@ function saveLabels(sortedLabels, imageUrl, fileName) {
   })
 }
 
-function saveProcessedImg(file){
+// Function used to save the processed img to the processedImages folder
+function saveProcessedImg(file, canvas){
   const processedImagePath = 'processedImages/processed' + path.basename(file.path)
   const out = fs.createWriteStream(processedImagePath)
   const stream = canvas.createJPEGStream()

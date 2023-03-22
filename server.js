@@ -10,6 +10,8 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
 app.use('/images', express.static('images'))
+app.use('/processedImages', express.static('processedImages'))
+
 
 
 
