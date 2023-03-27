@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 // Function used to save the labels to a JSON file.
 function saveLabels(sortedLabels, imageUrl, fileName) {
@@ -26,6 +27,5 @@ function saveLabels(sortedLabels, imageUrl, fileName) {
 }
 
 module.exports = {
-    saveLabels,
-    saveProcessedImg
+    saveLabels
 }

@@ -35,7 +35,12 @@ function filterLabels(labels){
   return ({ newLabels, sortedLabels })
 }
 
+function isAnimal(object){
+  return labelNamesSet.has(object.name)
+}
+
 module.exports = {
     labelNamesSet,
-    filterLabels
+    filterLabels,
+    isAnimal
 }

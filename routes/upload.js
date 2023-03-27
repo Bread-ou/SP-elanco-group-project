@@ -53,6 +53,7 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
         const labelsList = []
         const imageUrls = []
         const processedImageUrls = []
+        const animalNum = []
 
         // Loop through the images, send API requests and store the responces.
         for(let i=0; i<req.files.length; i++) {
@@ -76,16 +77,27 @@ router.post('/', upload.array('images', 10), async (req,res)=>{
             
             // TODO: LABEL SAVE METHOD MADE OBSOLETE, CHANGE IT TO FIT NEW FORMAT.
 
+             // Count the number of animals in the objects array.
+             let animalCount = 0
+             objects.forEach(object => {
+                 if (labelChecker.isAnimal(object)) {
+                     animalCount++
+                 }
+             })
+
             // Filter the labels and store both lists in the labelsList.
             labelsList.push(labelChecker.filterLabels(sortedLabels)) // 
             imageUrls.push(imageUrl)
+
+            // Store the number of animals for each image.
+            animalNum.push(animalCount)
             
             console.log(processedImageUrl)
             processedImageUrls.push(processedImageUrl)
         }
 
         // Render labels.ejs file and pass on the sorted labels and image URLs.
-        res.render('labels', {labelsList, imageUrls, processedImageUrls})
+        res.render('labels', {labelsList, imageUrls, processedImageUrls, animalNum})
     } else {
         // Error handling when no images are uploaded
         res.status(400).send("Please upload at least one valid image")
