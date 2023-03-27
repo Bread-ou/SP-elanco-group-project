@@ -12,9 +12,7 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
 app.use('/images', express.static('images'))
-
-
-
+app.use('/processedImages', express.static('processedImages'))
 
 
 // Set up a redirect from the root URL to the upload page instead.
@@ -25,9 +23,9 @@ app.get('/', (req, res) => {
 // Use the uploadRouter for requests to /upload
 app.use('/upload', uploadRouter)
 
+app.use("/views",express.static(__dirname + "/views"));
 
 app.listen(PORT, ()=>{
     console.log("The server is running on port number: "+PORT)
 })
 
-app.use("/views",express.static(__dirname + "/views"));
