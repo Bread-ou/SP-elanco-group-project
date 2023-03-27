@@ -35,20 +35,6 @@ function filterLabels(labels){
   return ({ newLabels, sortedLabels })
 }
 
-// -------Obsolete------
-// function seperateLabels(newLabels, oldLabels){
-//   newLabels.forEach((newLabel) =>{
-//     oldLabels.forEach((oldLabel, index) => {
-//     if (oldLabel.description === newLabel.description){
-//       console.log(oldLabel)
-//       oldLabels.splice(index, 1)
-//     }
-//   })
-// })
-// return oldLabels
-// }
-
-
 module.exports = {
     labelNamesSet,
     filterLabels

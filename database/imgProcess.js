@@ -1,7 +1,10 @@
 const { createCanvas, loadImage } = require('canvas')
-const {saveProcessedImg} = require('./fileSave')
+const path = require('path')
+const fs = require('fs')
 
 
+
+// Async function used to draw the borders around the objects in the image and save the processed image in the folder.
 async function processImg (objects, file) {
     // Load image and draw borders and labels
     const originalImage = await loadImage(file.path)
@@ -21,7 +24,15 @@ async function processImg (objects, file) {
         ctx.stroke()
         ctx.fillText(object.name, object.boundingPoly.normalizedVertices[0].x * originalImage.width, object.boundingPoly.normalizedVertices[0].y * originalImage.height - 5)
     })
-    const processedImagePath = saveProcessedImg(file, canvas)
+
+    // Save image in processedImages folder
+    const processedImagePath = 'processedImages/processed' + path.basename(file.path)
+    const out = fs.createWriteStream(processedImagePath)
+    const stream = canvas.createJPEGStream()
+    stream.pipe(out)
+    out.on('finish', () => {
+        console.log('Processed image saved.')
+    })
     return processedImagePath
 }
 

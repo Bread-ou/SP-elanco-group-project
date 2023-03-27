@@ -6,6 +6,7 @@ const path = require ('path')
 const fileSave = require('../database/fileSave.js')
 const imgProcess = require('../database/imgProcess')
 const labelChecker = require('../database/labelNameCheck')
+
 // Google cloud vision setup.
 const vision = require('@google-cloud/vision')
 const client = new vision.ImageAnnotatorClient({
