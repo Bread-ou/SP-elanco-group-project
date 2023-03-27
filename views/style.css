@@ -294,4 +294,16 @@ a:visited{
  input[name = "image"]:invalid+input[name = "submit"]{
     visibility: hidden;
  }
+ input[type="file"] {
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    cursor: pointer;
+  }
  
