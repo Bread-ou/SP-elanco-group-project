@@ -12,6 +12,8 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
 app.use('/images', express.static('images'))
+app.use('/processedImages', express.static('processedImages'))
+
 
 // Set up a redirect from the root URL to the upload page instead.
 app.get('/', (req, res) => {

@@ -15,33 +15,41 @@ fs.createReadStream('./animals.csv')
 
 // Function used to filter the labels.
 function filterLabels(labels){
-  const filteredLabels = []
+  const newLabels = []
+  const sortedLabels = []
+  let found = false
   labels.forEach((label) => {
     //console.log('label.description:', label.description)
     labelNamesSet.forEach((animalName) => {
     //console.log('animalName:', animalName)
       if (label.description.includes(animalName)) {
-        filteredLabels.push(label)
+        newLabels.push(label)
+        found = true
       }
     })
+    if (!found){
+      sortedLabels.push(label)
+    }
+    found = false
   })
-    return filteredLabels
+  return ({ newLabels, sortedLabels })
 }
 
-function seperateLabels(newLabels, oldLabels){
-  const unfilteredLabels = []
-  oldLabels.forEach((oldLabel) =>{
-    newLabels.forEach((newLabel) => {
-      if (!(oldLabel.description.includes(newLabel.description))) {
-        unfilteredLabels.push(oldLabel)
-      }
-    })
-  })
-    return unfilteredLabels
-}
+// -------Obsolete------
+// function seperateLabels(newLabels, oldLabels){
+//   newLabels.forEach((newLabel) =>{
+//     oldLabels.forEach((oldLabel, index) => {
+//     if (oldLabel.description === newLabel.description){
+//       console.log(oldLabel)
+//       oldLabels.splice(index, 1)
+//     }
+//   })
+// })
+// return oldLabels
+// }
+
 
 module.exports = {
     labelNamesSet,
-    filterLabels,
-    seperateLabels
+    filterLabels
 }
