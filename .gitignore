@@ -2,6 +2,6 @@ node_modules
 Key.json
 images
 imageInfo.json
-unfilteredLabels.json
 filteredLabels.json
+unfilteredLabels.json
 processedImages
