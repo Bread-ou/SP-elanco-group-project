@@ -3,9 +3,9 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const path = require ('path')
-const fileSave = require('../database/fileSave.js')
 const imgProcess = require('../database/imgProcess')
 const labelChecker = require('../database/labelNameCheck')
+const {getDescription} = require('../database/openAI')
 
 // Google cloud vision setup.
 const vision = require('@google-cloud/vision')
@@ -29,6 +29,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: {
+        // 2 MB
         fileSize: (2 * 1024 * 1024)
     },
     fileFilter(req, file, cb) {
@@ -54,6 +55,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
         const imageUrls = []
         const processedImageUrls = []
         const animalNum = []
+        const animalTexts = []
 
         // Loop through the images, send API requests and store the responces.
         for(let i=0; i<req.files.length; i++) {
@@ -86,7 +88,15 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
              })
 
             // Filter the labels and store both lists in the labelsList.
-            labelsList.push(labelChecker.filterLabels(sortedLabels)) // 
+            labelsList.push(labelChecker.filterLabels(sortedLabels)) 
+            
+            // If there is an animal name then get the description and store it in an array.
+            if(labelsList[i].newLabels){
+                console.log(labelsList[i].newLabels[0].description.toString())
+                let animalText = getDescription(labelsList[i].newLabels[0].description.toString())
+                animalTexts.push(animalText)
+                console.log(animalText)
+            }
             imageUrls.push(imageUrl)
 
             // Store the number of animals for each image.
@@ -95,7 +105,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             console.log(processedImageUrl)
             processedImageUrls.push(processedImageUrl)
         }
-
+        
         // Render labels.ejs file and pass on the sorted labels and image URLs.
         res.render('labels', {labelsList, imageUrls, processedImageUrls, animalNum})
     } else {

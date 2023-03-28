@@ -15,6 +15,7 @@ async function processImg (objects, file) {
     ctx.font = '16px sans-serif'
     ctx.fillStyle = 'red'
 
+    // Draw the boxes and text labels for each object.
     objects.forEach(object => {
         ctx.beginPath()
         ctx.rect(object.boundingPoly.normalizedVertices[0].x * originalImage.width,
