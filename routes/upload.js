@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 2000000
+        fileSize: (2 * 1024 * 1024)
     },
     fileFilter(req, file, cb) {
         if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
@@ -47,7 +47,7 @@ router.get('/', (req, res)=> {
 })
 
 // Post method used to upload image to the server, send and receive labels from the API, and forward that to the front end.
-router.post('/', upload.array('images', 10), async (req,res)=>{
+router.post('/', upload.array('images', 3), async (req,res)=>{
     // If there are files uploaded
     if (req.files && req.files.length > 0) {
         const labelsList = []
