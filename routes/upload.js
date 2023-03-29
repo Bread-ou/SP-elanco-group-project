@@ -2,18 +2,18 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer')
-const path = require ('path')
+//const path = require ('path')
 const imgProcess = require('../database/imgProcess')
 const labelChecker = require('../database/labelNameCheck')
-const {getDescription} = require('../database/openAI')
+const {getDescription} = require('../config/openAI')
 
 // MonogoDB setup (mongoose)
 
 const dotenv = require('dotenv')
-dotenv.config();
-const connectDB = require('../config/dbConn');
+dotenv.config()
+const connectDB = require('../config/dbConn')
 const mongoose = require ('mongoose')
-mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', true)
 
 // Google cloud vision setup.
 const vision = require('@google-cloud/vision')
@@ -44,18 +44,18 @@ const imageSchema = new mongoose.Schema({
         type: [{ description: String, score: Number }],
         required: true
       }
-  });
+  })
 
   //indexing
-imageSchema.index({ FilteredLabels: 1 });
-imageSchema.index({ sorted: 1 });
-imageSchema.index({ Animals: 1 });
+imageSchema.index({ FilteredLabels: 1 })
+imageSchema.index({ sorted: 1 })
+imageSchema.index({ Animals: 1 })
 
 //Connect TO Mongo DB
-connectDB();
+connectDB()
 
-const Image = mongoose.model('Image', imageSchema, "Images_Data");
-const fs = require('fs');
+const Image = mongoose.model('Image', imageSchema, "Images_Data")
+const fs = require('fs')
 
 mongoose.connection.once('open', ()=> {
     console.log("Connected to MongoDB")
@@ -66,7 +66,7 @@ mongoose.connection.once('open', ()=> {
 
 // Storage and multipart data handling.
 
-const storage = multer.memoryStorage();
+const storage = multer.memoryStorage()
 
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) =>{
@@ -100,7 +100,7 @@ const upload = multer({
 router.get('/', (req, res)=> {
     var error ='';
 
-    res.render('index', {errorMessage:error});
+    res.render('index', {errorMessage:error})
 })
 
 // Post method used to upload image to the server, send and receive labels from the API, and forward that to the front end.
@@ -161,11 +161,10 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
 
             // Store the number of animals for each image.
             animalNum.push(animalCount)
-            
-            console.log(processedImageUrl)
+            // Store processed Img
             processedImageUrls.push(processedImageUrl)
 
-         const image = new Image({ data: buffer, Processed: processedImageUrls[i], Animals: animalNum[i], FilteredLabels : labelsList[i].newLabels, sorted: labelsList[i].sortedLabels});
+         const image = new Image({ data: buffer, Processed: processedImageUrls[i], Animals: animalNum[i], FilteredLabels : labelsList[i].newLabels, sorted: labelsList[i].sortedLabels})
           image.save(function (err, image) {
           if (err)
           throw err
@@ -183,17 +182,17 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
         res.status(400).send("Please upload at least one valid image")
       //  res.redirect('index2', { errorMessage : 'Please upload at least one valid image'  });
     }
-});
+})
 
 router.get('/images', async (req, res) => {
 
     try {
-      const images = await Image.find();
+      const images = await Image.find()
 
-      res.render('images', { images });
+      res.render('images', { images })
     } catch (err) {
-      console.error(err);
-      res.status(500).send('Server Error');
+      console.error(err)
+      res.status(500).send('Server Error')
     }
-  });
+})
 module.exports = router
