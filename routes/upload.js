@@ -44,10 +44,17 @@ async function isImageSafe(buffer) {
     console.log(safeSearch)
 
     const isUnsafe =
+
         safeSearch.adult === 'LIKELY' ||
         safeSearch.adult === 'VERY_LIKELY' ||
         safeSearch.violence === 'LIKELY' ||
-        safeSearch.violence === 'VERY_LIKELY'
+        safeSearch.violence === 'VERY_LIKELY' ||
+        safeSearch.medical === 'LIKELY' ||
+        safeSearch.medical === 'VERY_LIKELY' ||
+        safeSearch.spoof === 'LIKELY' ||
+        safeSearch.spoof === 'VERY_LIKELY' ||
+        safeSearch.racy === 'LIKELY' ||
+        safeSearch.racy === 'VERY_LIKELY'
 
     return !isUnsafe
 }
