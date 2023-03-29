@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 3000
 
 //Connect TO Mongo DB
 connectDB()
+mongoose.connection.once('open', ()=> {
+    console.log("Connected to MongoDB")
+});
 
 // Setting up the view engine.
 app.set('view engine', 'ejs')

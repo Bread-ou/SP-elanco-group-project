@@ -37,11 +37,11 @@
 </style>
 </head>
 <body>
-    <% for(let i=0; i<imageUrls.length; i++) { %>
+    <% for(let i=0; i<processedImageUrls.length; i++) { %>
       <div class="container">
         <div class="image">
           <h2>Image :</h2>
-          <img src="data:image/jpeg;base64,<%= imageUrls[i].toString('base64') %>" />
+          <img src="data:image/jpeg;base64,<%= processedImageUrls[i].toString('base64') %>" />
         </div>
         <% const labelsByImage = labelsList[i]; %>
         <% if (labelsByImage.newLabels.length > 0) { %>

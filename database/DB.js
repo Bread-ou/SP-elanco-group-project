@@ -13,14 +13,14 @@ const imageSchema = new mongoose.Schema({
         type: Buffer,
         required: true
       },
-    //    Processed: {
-    //     type: Buffer,
-    //     required: true
-    //   },
-    //   Animals: {
-    //     type: Number,
-    //     required: true
-    //   },
+       Processed: {
+        type: Buffer,
+        required: true
+      },
+      Animals: {
+        type: Number,
+        required: true
+      },
       FilteredLabels: {
         type: [{ description: String, score: Number }],
         required: true
