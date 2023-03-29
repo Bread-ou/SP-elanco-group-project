@@ -41,7 +41,7 @@
       <div class="container">
         <div class="image">
           <h2>Image :</h2>
-          <img src="<%= processedImageUrls[i] %>">
+          <img src="data:image/jpeg;base64,<%= processedImageUrls[i].toString('base64') %>" />
         </div>
         <% const labelsByImage = labelsList[i]; %>
         <% if (labelsByImage.newLabels.length > 0) { %>

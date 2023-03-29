@@ -19,14 +19,13 @@ function filterLabels(labels){
   const sortedLabels = []
   let found = false
   labels.forEach((label) => {
-    //console.log('label.description:', label.description)
     labelNamesSet.forEach((animalName) => {
-    //console.log('animalName:', animalName)
       if (label.description.includes(animalName)) {
         newLabels.push(label)
         found = true
       }
     })
+    // If the label is not a part of the list add it to the "unfiltered list"
     if (!found){
       sortedLabels.push(label)
     }
@@ -35,6 +34,7 @@ function filterLabels(labels){
   return ({ newLabels, sortedLabels })
 }
 
+// Function to check if the objects found in the image are animals.
 function isAnimal(object){
   return labelNamesSet.has(object.name)
 }

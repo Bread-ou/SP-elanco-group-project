@@ -23,6 +23,12 @@
 <body>
     <h1>Welcome to the Machine Learning Experience</h1>
     <h2>Upload image</h2>
+    <div><% if (errorMessage) { %>
+        <div class="error-message">
+          <%= errorMessage %>
+        </div>
+      <% } %></div>
+
     <form method="POST" action="/upload" enctype="multipart/form-data">
         <input type="file" name="images" accept="image/*" multiple onchange="previewImage(event)">
         <div id="thumbnails" class="thumbnails-container"></div>
