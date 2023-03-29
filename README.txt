@@ -31,9 +31,7 @@ git clone https://github.com/Bread-ou/SP-elanco-group-project.git
 npm install
 
 
-3. Make all folders are available:
-- Check to see if you have a processesdImages folder 
-- Check to see if you have a images folder
+//3. Talk about database stuff (key)
 
 
 4. Place your Google Cloud Vision API key file in the project root directory, and make sure it's called Key.json
@@ -78,4 +76,7 @@ views/labels.ejs : HTML template for displaying the processed images and labels.
 
 ############# Made By #############
 
-Abdulaziz Marafi, Habib Ullah
+Abdulaziz Marafi
+Habib Ullah
+
+
