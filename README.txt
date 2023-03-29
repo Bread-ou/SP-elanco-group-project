@@ -60,7 +60,7 @@ database/imgProcess.js :  Module for processing images, drawing borders around d
 
 database/labelNameChecker.js : Module for reading the animals CSV file, creating a set of animal names, and filtering labels based on these names.
 
-views/inex.ejs : Main HTML template for the file upload form.
+views/index.ejs : Main HTML template for the file upload form.
 
 views/labels.ejs : HTML template for displaying the processed images and labels.
 
@@ -78,4 +78,4 @@ views/labels.ejs : HTML template for displaying the processed images and labels.
 
 ############# Made By #############
 
-Abdulaziz Marafi
+Abdulaziz Marafi, Habib Ullah
