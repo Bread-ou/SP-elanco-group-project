@@ -1,56 +1,71 @@
-<!DOCTYPE html>
 </html>
+
 <head>
   <title>Image Labels</title>
   <link rel="stylesheet" href="views\style.css">
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <body>
 
-  
-    <% for(let i=0; i<processedImageUrls.length; i++) { %>
-      <div class="Fcontainer">
-      <img src="<%= processedImageUrls[i] %>" alt="uploaded image">
-      <% const labelsByImage = labelsList[i]; %>
-      <% if (labelsByImage.newLabels.length > 0) { %>
-      <div class="labels">
-        filtered labels
-        <ul class="labels-list">
-          <% for(let j=0; j<labelsByImage.newLabels.length; j++) { %>
-          <li>
-          <%= labelsByImage.newLabels[j].description %>
-          <% if (labelsByImage.newLabels[j].score >= 0.8) { %>
-            <span class="confidence high-confidence">(High confidence)</span>
-          <% } else if (labelsByImage.newLabels[j].score >= 0.6) { %>
-            <span class="confidence medium-confidence">(Medium confidence)</span>
-          <% } else { %>
-            <span class="confidence low-confidence">(Low confidence)</span>
-          <% } %>
-          </li>
-        <% } %>
-        </ul>
-      </div>
-      <% } else { %>
-        <div class="labels">
-          <h2>No animals detected in this image.</h2>
-        </div>
-      <% } %>
-        <div class="labels">
-          unfiltered labels
-          <ul class="labels-list">
-            <% for(let j=0; j<labelsByImage.sortedLabels.length; j++) { %>
-              <li>
-                <%= labelsByImage.sortedLabels[j].description %>
-                  <% if (labelsByImage.sortedLabels[j].score >= 0.8) { %>
-                    <span class="confidence high-confidence">(High confidence)</span>
-                  <% } else if (labelsByImage.sortedLabels[j].score >= 0.6) { %>
-                    <span class="confidence medium-confidence">(Medium confidence)</span>
-                  <% } else { %>
-                    <span class="confidence low-confidence">(Low confidence)</span>
-                <% } %>
-          <% } %>
-        </div>
-        <% } %>
-          
+  <div class="header">
+    <img src="views\elanco_logo.png" alt="logo" class="centreimage" />
+    <div class="Item2">Previous Submissions</div>
   </div>
+
+  <% for(let i=0; i<processedImageUrls.length; i++) { %>
+    <div class="container">
+      <img src="<%= processedImageUrls[i] %>" alt="uploaded image">
+      <% const labelsByImage=labelsList[i]; %>
+        <% if (labelsByImage.newLabels.length> 0) { %>
+          <div class="labels">
+            filtered labels
+            <ul class="labels-list">
+              <% for(let j=0; j<labelsByImage.newLabels.length; j++) { %>
+                <li>
+                  <%= labelsByImage.newLabels[j].description %>
+                    <% if (labelsByImage.newLabels[j].score>= 0.8) { %>
+                      <span class="confidence high-confidence">(High confidence)</span>
+                      <% } else if (labelsByImage.newLabels[j].score>= 0.6) { %>
+                        <span class="confidence medium-confidence">(Medium confidence)</span>
+                        <% } else { %>
+                          <span class="confidence low-confidence">(Low confidence)</span>
+                          <% } %>
+                </li>
+                <% } %>
+            </ul>
+          </div>
+          <% } else { %>
+            <div class="labels">
+              <h2>No animals detected in this image.</h2>
+            </div>
+            <% } %>
+              <div class="labels">
+                unfiltered labels
+                <ul class="labels-list">
+                  <% for(let j=0; j<labelsByImage.sortedLabels.length; j++) { %>
+                    <li>
+                      <%= labelsByImage.sortedLabels[j].description %>
+                        <% if (labelsByImage.sortedLabels[j].score>= 0.8) { %>
+                          <span class="confidence high-confidence">(High confidence)</span>
+                          <% } else if (labelsByImage.sortedLabels[j].score>= 0.6) { %>
+                            <span class="confidence medium-confidence">(Medium confidence)</span>
+                            <% } else { %>
+                              <span class="confidence low-confidence">(Low confidence)</span>
+                              <% } %>
+                                <% } %>
+              </div>
+    </div>
+    <% } %>
+
+      </div>
+
+
+
+      <div class="secondFooter">
+        Elanco Team 1
+      </div>
+
+
+
 </body>
