@@ -3,8 +3,17 @@ const express = require('express')
 const app = express()
 const uploadRouter = require('./routes/upload')
 const galleryRouter = require('./routes/gallery')
+const connectDB = require('./config/dbConn')
+const mongoose = require ('mongoose')
+mongoose.set('strictQuery', true)
 const PORT = process.env.PORT || 3000
 
+
+//Connect TO Mongo DB
+connectDB()
+mongoose.connection.once('open', ()=> {
+    console.log("Connected to MongoDB")
+});
 
 // Setting up the view engine.
 app.set('view engine', 'ejs')
@@ -28,5 +37,6 @@ app.use("/views",express.static(__dirname + "/views"))
 
 app.listen(PORT, ()=>{
     console.log("The server is running on port number: "+PORT)
+    
 })
 
