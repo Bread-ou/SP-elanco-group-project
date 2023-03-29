@@ -2,7 +2,6 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer')
-//const path = require ('path')
 const imgProcess = require('../database/imgProcess')
 const db = require('../database/DB')
 const labelChecker = require('../database/labelNameCheck')
@@ -78,6 +77,10 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             
             // Check if the content is safe before saving to database
             const isSafe = await isImageSafe(buffer)
+
+            if(!isSafe){
+                return res.render('index', { errorMessage: 'One or more of the images uploaded contains unsafe content. Please upload a safe image.' })
+            }
 
             // Send image and return the results from the API.
             const [result] = await client.labelDetection(buffer)
