@@ -4,16 +4,10 @@ const router = express.Router()
 const multer = require('multer')
 //const path = require ('path')
 const imgProcess = require('../database/imgProcess')
+const db = require('../database/DB')
 const labelChecker = require('../database/labelNameCheck')
 const {getDescription} = require('../config/openAI')
-
-// MonogoDB setup (mongoose)
-
-const dotenv = require('dotenv')
-dotenv.config()
-const connectDB = require('../config/dbConn')
 const mongoose = require ('mongoose')
-mongoose.set('strictQuery', true)
 
 // Google cloud vision setup.
 const vision = require('@google-cloud/vision')
@@ -21,64 +15,12 @@ const client = new vision.ImageAnnotatorClient({
     keyFilename: './Key.json'
 })
 
-// imageSchema for the images and labels
+const Image = mongoose.model('Image', db.imageSchema, "Images_Data")
 
-const imageSchema = new mongoose.Schema({
-    data: {
-        type: Buffer,
-        required: true
-      },
-       Processed: {
-        type: Buffer,
-        required: true
-      },
-      Animals: {
-        type: Number,
-        required: true
-      },
-      FilteredLabels: {
-        type: [{ description: String, score: Number }],
-        required: true
-      },
-      sorted: {
-        type: [{ description: String, score: Number }],
-        required: true
-      }
-  })
-
-  //indexing
-imageSchema.index({ FilteredLabels: 1 })
-imageSchema.index({ sorted: 1 })
-imageSchema.index({ Animals: 1 })
-
-//Connect TO Mongo DB
-connectDB()
-
-const Image = mongoose.model('Image', imageSchema, "Images_Data")
-const fs = require('fs')
-
-mongoose.connection.once('open', ()=> {
-    console.log("Connected to MongoDB")
-
-
-});
-
-
-// Storage and multipart data handling.
+// Storing in the memory
 
 const storage = multer.memoryStorage()
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) =>{
-//         cb(null, 'images')
-//     },
-//     filename: (req, file, cb) => {
-//         console.log(file)
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-// })
-
-// Multer configuration
 // TODO: handle the response properly.
 const upload = multer({
     storage: storage,
@@ -88,7 +30,7 @@ const upload = multer({
     },
     fileFilter(req, file, cb) {
         if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-        return cb(('Please upload a valid image file!'))
+        return cb(null,('Please upload a valid image file!'))
         }
         cb(undefined, true)
     },
@@ -152,10 +94,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
 
             // Sort the labels in order of highest confidence.
             let sortedLabels = labels.sort((a, b) => b.score - a.score)
-            //const imageUrl = '/images/' + path.basename(file.path)
-            
-            // TODO: LABEL SAVE METHOD MADE OBSOLETE, CHANGE IT TO FIT NEW FORMAT.
-
+           
              // Count the number of animals in the objects array.
              let animalCount = 0
              objects.forEach(object => {
@@ -181,35 +120,23 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             // Store processed Img
             processedImageUrls.push(processedImageUrl)
 
-         const image = new Image({ data: buffer, Processed: processedImageUrls[i], Animals: animalNum[i], FilteredLabels : labelsList[i].newLabels, sorted: labelsList[i].sortedLabels})
+          // storing into database
+          const image = new Image({ data: buffer, Processed: processedImageUrls[i], Animals: animalNum[i], FilteredLabels : labelsList[i].newLabels, sorted: labelsList[i].sortedLabels})
           image.save(function (err, image) {
-          if (err)
-          throw err
-          console.log(image._id) // The ID of the inserted document
+            if (err) {
+              console.error(`Error while saving image: ${err}`);
+            }
+            console.log(`Image with ID ${image._id} saved to database`)// The ID of the inserted document
 
           })
         }
-
-        
         
         // Render labels.ejs file and pass on the sorted labels and image URLs.
         res.render('labels', {labelsList, imageUrls, processedImageUrls, animalNum})
     } else {
         // Error handling when no images are uploaded
-        res.status(400).send("Please upload at least one valid image")
-      //  res.redirect('index2', { errorMessage : 'Please upload at least one valid image'  });
+        res.render('index', { errorMessage : 'Please upload at least one valid image'  });
     }
 })
 
-router.get('/images', async (req, res) => {
-
-    try {
-      const images = await Image.find()
-
-      res.render('images', { images })
-    } catch (err) {
-      console.error(err)
-      res.status(500).send('Server Error')
-    }
-})
 module.exports = router
