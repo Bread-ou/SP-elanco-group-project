@@ -28,11 +28,10 @@ app.get('/', (req, res) => {
     res.redirect('/upload')
 })
 
-// Use the galleryRouter for requests to retrieve
-app.use('/gallery', galleryRouter);
-
-// Use the uploadRouter for requests to /upload
+// Router set up
 app.use('/upload', uploadRouter)
+app.use('/gallery', galleryRouter)
+
 
 app.use("/views",express.static(__dirname + "/views"))
 
