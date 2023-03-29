@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Labels</title>
+    <style>
+      .container {
+          display: flex;
+          flex-direction: row;
+      }
+      .image {
+          flex: 1;
+      }
+      .labels {
+          flex: 1;
+          padding-left: 20px;
+      }
+      ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+      }
+      li {
+          margin-bottom: 10px;
+      }
+      .high-confidence {
+          color: green;
+          font-weight: bold;
+      }
+      .medium-confidence {
+          color: orange;
+          font-weight: bold;
+      }
+      .low-confidence {
+          color: red;
+          font-weight: bold;
+      }
+  </style>
+  </head>
+
+  <body>
+    <% if (images && images.length > 0) { %>
+      <% images.forEach((image) => { %>
+        <div>
+          <% if (image && image.data) { %>
+
+            <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+          <% } %>
+
+          <% if (image && image.FilteredLabels && image.FilteredLabels.length > 0) { %>
+            <ul>
+              <% image.FilteredLabels.forEach((filtered) => { %>
+                <li><%= filtered.description %> <%= filtered.score %> </li>
+              <% }) %>
+            </ul>
+          <% } %>
+        <div>__</div>
+          <% if (image && image.sorted && image.sorted.length > 0) { %>
+            <ul>
+              <% image.sorted.forEach((label) => { %>
+                <li><%= label.description %> <%= label.score %> </li>
+              <% }) %>
+            </ul>
+          <% } %>
+
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No images found.</p>
+    <% } %>
+  </body>
+</html>

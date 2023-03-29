@@ -1,9 +1,8 @@
-
-
 // Requirments to run the sever.
 const express = require('express')
 const app = express()
 const uploadRouter = require('./routes/upload')
+const galleryRouter = require('./routes/gallery')
 const PORT = process.env.PORT || 3000
 
 
@@ -20,10 +19,12 @@ app.get('/', (req, res) => {
     res.redirect('/upload')
 })
 
-// Use the uploadRouter for requests to /upload
+// Router set up
 app.use('/upload', uploadRouter)
+app.use('/gallery', galleryRouter)
 
-app.use("/views",express.static(__dirname + "/views"));
+
+app.use("/views",express.static(__dirname + "/views"))
 
 app.listen(PORT, ()=>{
     console.log("The server is running on port number: "+PORT)
