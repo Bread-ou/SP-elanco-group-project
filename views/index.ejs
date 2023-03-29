@@ -10,14 +10,11 @@
 </head>
 
 <body>
-
-
-    <div id="header">
+    <div class="header">
         <img src="views\elanco_logo.png"  alt="logo" class="centreimage" /> 
-        <div class="previous-uploads">Previous Submissions        </div>
+        <div class="Item2">Previous Submissions</div>
     </div>
     <div class="container">
-
         <form method="POST" action="/upload" enctype="multipart/form-data">
             <label for="image">Select a file</label>
             <input type="file" name="images" id="image" accept="image/*" multiple onchange="previewImage(event)">
@@ -54,6 +51,7 @@
         </div>
     </div>
     <div class="secondFooter">
+        <a href="views\gallery.ejs">Gallery</a>
         Elanco Team 1        
     </div>
 
