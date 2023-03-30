@@ -13,65 +13,50 @@
   <div class="header">
     <img src="views\elanco_logo.png"  alt="logo" class="centreimage" /> 
     <div class="Item2">
-      <a href="views\index.ejs">Home</a>
-    </div>
+      <a href="/gallery">Gallery</a>
     </div>
     <div class="container">
       Previous Submissions
     </div>
-    <div class="container">
-      <div class="smallCard">
-        CARD 1
-      </div>
-      <div class="smallCard">
-        CARD 1
-      </div>
-      <div class="smallCard">
-        CARD 1
-      </div>
-      <div class="smallCard">
-        CARD 1
-      </div>
-      <div class="smallCard">
-        CARD 1
-      </div>
+      <% if (images && images.length > 0) { %>
+        <% images.forEach((image) => { %>
+          <div class="container">
+            <% if (image && image.data) { %>
+            <img src="Processed:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+              <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+            <% } %>
+  
+            <% if (image && image.FilteredLabels && image.FilteredLabels.length > 0) { %>
+              <ul>
+                <% image.FilteredLabels.forEach((filtered) => { %>
+                  <li><%= filtered.description %> <%= filtered.score %> </li>
+                <% }) %>
+              </ul>
+            <% } %>
+          <div>__</div>
+            <% if (image && image.sorted && image.sorted.length > 0) { %>
+              <ul>
+                <% image.sorted.forEach((label) => { %>
+                  <li><%= label.description %> <%= label.score %> </li>
+                <% }) %>
+              </ul>
+            <% } %>
+  
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No images found.</p>
+      <% } %>  
     </div>
+
+
+
+
     <div class="secondFooter">
-      <a href="views\gallery.ejs">Gallery</a>
       Elanco Team 1        
     </div>
 
-    <% if (images && images.length > 0) { %>
-      <% images.forEach((image) => { %>
-        <div>
-          <% if (image && image.data) { %>
-          <img src="Processed:image/jpeg;base64, <%= image.data.toString('base64') %>" />
-            <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
-          <% } %>
-
-          <% if (image && image.FilteredLabels && image.FilteredLabels.length > 0) { %>
-            <ul>
-              <% image.FilteredLabels.forEach((filtered) => { %>
-                <li><%= filtered.description %> <%= filtered.score %> </li>
-              <% }) %>
-            </ul>
-          <% } %>
-        <div>__</div>
-          <% if (image && image.sorted && image.sorted.length > 0) { %>
-            <ul>
-              <% image.sorted.forEach((label) => { %>
-                <li><%= label.description %> <%= label.score %> </li>
-              <% }) %>
-            </ul>
-          <% } %>
-
-        </div>
-      <% }) %>
-    <% } else { %>
-      <p>No images found.</p>
-    <% } %>
-
-
+    
 
 
 
