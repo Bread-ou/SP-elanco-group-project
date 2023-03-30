@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/views/style.css" rel="stylesheet" type="text/css">
-        <title>Title Page</title>
+        <title>Upload Page</title>
         <style>
             .thumbnails-container {
                 display: flex;
@@ -27,12 +27,15 @@
         <form method="POST" action="/upload" enctype="multipart/form-data" onsubmit="return validateForm(event)">
             <div class="error-message" id="imageError" style="display: none;">
             </div>
+            <div class="error-message" id="serverError" style="display: none;">
+            </div>
             <input type="file" name="images" accept="image/*" multiple onchange="previewImage(event)">
             <div id="thumbnails" class="thumbnails-container"></div>
             <br>
             <input type="submit">
         </form>
         <script>
+            
             function previewImage(event) {
                 var thumbnailsContainer = document.getElementById('thumbnails')
                 thumbnailsContainer.innerHTML = '' // Clear the thumbnails container
@@ -107,8 +110,13 @@
 
             return true
             }
+            if (serverError) { 
+                    var serverErrorMessage = document.getElementById("serverError")
+                    serverErrorMessage.innerHTML = "<%= errorMessage %>"
+                    serverErrorMessage.style.display = "block"
+            } 
         </script>
-        <a href="/gallery" class="button">View Previous Results</a>
 
+        <a href="/gallery" class="button">View Previous Results</a>
     </body>
 </html>

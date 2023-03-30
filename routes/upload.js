@@ -86,7 +86,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             const isSafe = await isImageSafe(buffer)
 
             if(!isSafe){
-                return res.render('index', { errorMessage: 'One or more of the images uploaded contains unsafe content. Please upload a safe image.' })
+                return res.render('index', { errorMessage: 'One or more of the images uploaded contains unsafe content. Please upload a safe image.', serverError: true})
             }
 
             // Send image and return the results from the API.

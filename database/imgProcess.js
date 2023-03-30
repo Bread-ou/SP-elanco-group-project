@@ -30,7 +30,8 @@ async function processImg (objects, file) {
 
     const buffer = canvas.toBuffer('image/jpeg')
 
-    return buffer;
+    return buffer
+    
     // // Save image in processedImages folder
     // const processedImagePath = 'processedImages/processed' + path.basename(file.path)
     // const out = fs.createWriteStream(processedImagePath)
