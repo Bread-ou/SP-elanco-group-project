@@ -2,7 +2,6 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer')
-//const path = require ('path')
 const imgProcess = require('../database/imgProcess')
 const db = require('../database/DB')
 const labelChecker = require('../database/labelNameCheck')
@@ -38,6 +37,27 @@ const upload = multer({
 
 })
 
+// Safe search function 
+async function isImageSafe(buffer) {
+    const [safeSearchResult] = await client.safeSearchDetection(buffer)
+    const safeSearch = safeSearchResult.safeSearchAnnotation
+    console.log(safeSearch)
+
+    const isUnsafe =
+
+        safeSearch.adult === 'LIKELY' ||
+        safeSearch.adult === 'VERY_LIKELY' ||
+        safeSearch.violence === 'LIKELY' ||
+        safeSearch.violence === 'VERY_LIKELY' ||
+        safeSearch.medical === 'LIKELY' ||
+        safeSearch.medical === 'VERY_LIKELY' ||
+        safeSearch.spoof === 'LIKELY' ||
+        safeSearch.spoof === 'VERY_LIKELY' ||
+        safeSearch.racy === 'LIKELY' ||
+        safeSearch.racy === 'VERY_LIKELY'
+
+    return !isUnsafe
+}
 // Get the index page to render.
 router.get('/', (req, res)=> {
     var error ='';
@@ -47,8 +67,8 @@ router.get('/', (req, res)=> {
 
 // Post method used to upload image to the server, send and receive labels from the API, and forward that to the front end.
 router.post('/', upload.array('images', 3), async (req,res)=>{
-    // If there are files uploaded
-    if (req.files && req.files.length > 0) {
+    // If there are files
+    if (req.files && req.files.length > 0 ) {
         const labelsList = []
         const imageUrls = []
         const processedImageUrls = []
@@ -57,10 +77,17 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
 
         // Loop through the images, send API requests and store the responces.
         for(let i=0; i<req.files.length; i++) {
-            const file = req.files[i];
+            const file = req.files[i]
 
             // save image in memory
-            const buffer = file.buffer;
+            const buffer = file.buffer
+            
+            // Check if the content is safe before saving to database
+            const isSafe = await isImageSafe(buffer)
+
+            if(!isSafe){
+                return res.render('index', { errorMessage: 'One or more of the images uploaded contains unsafe content. Please upload a safe image.', serverError: true})
+            }
 
             // Send image and return the results from the API.
             const [result] = await client.labelDetection(buffer)
@@ -90,8 +117,8 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             labelsList.push(labelChecker.filterLabels(sortedLabels)) 
             
             // If there is an animal name then get the description and store it in an array.
-            if(labelsList[i].newLabels){
-                console.log(labelsList[i].newLabels[0].description.toString())
+            if(labelsList[i].newLabels[0] != null){
+                //console.log(labelsList[i].newLabels[0].description.toString())
                 let animalText = getDescription(labelsList[i].newLabels[0].description.toString())
                 animalTexts.push(animalText)
                 console.log(animalText)
