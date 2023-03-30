@@ -1,62 +1,78 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/views/style.css" rel="stylesheet" type="text/css">
-    <title>Gallery Page</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/views/style.css" rel="stylesheet" type="text/css">
+  <title>Gallery Page</title>
 </head>
 
 
 
 <body>
   <div class="header">
-    <img src="views\elanco_logo.png"  alt="logo" class="centreimage" /> 
+    <img src="views\elanco_logo.png" alt="logo" class="centreimage" />
     <div class="Item2">
       <a href="/gallery">Gallery</a>
     </div>
+    <br><br><br>
     <div class="container">
-      Previous Submissions
+      <div class="TitleGallery">
+        Previous Submissions
+      </div>
     </div>
-      <% if (images && images.length > 0) { %>
-        <% images.forEach((image) => { %>
-          <div class="container">
-            <% if (image && image.data) { %>
-            <img src="Processed:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+    <% if (images && images.length> 0) { %>
+      <% images.forEach((image)=> { %>
+        <div class="container">
+          <% if (image && image.data) { %>
+            <div class="gallery-image">
               <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+            </div>
             <% } %>
-  
-            <% if (image && image.FilteredLabels && image.FilteredLabels.length > 0) { %>
-              <ul>
-                <% image.FilteredLabels.forEach((filtered) => { %>
-                  <li><%= filtered.description %> <%= filtered.score %> </li>
-                <% }) %>
-              </ul>
-            <% } %>
-          <div>__</div>
-            <% if (image && image.sorted && image.sorted.length > 0) { %>
-              <ul>
-                <% image.sorted.forEach((label) => { %>
-                  <li><%= label.description %> <%= label.score %> </li>
-                <% }) %>
-              </ul>
-            <% } %>
-  
-          </div>
+              <div class="galleryflist">
+                <span>Filtered List: </span> <br><br>
+                <% if (image && image.FilteredLabels && image.FilteredLabels.length> 0) { %>
+                  <% image.FilteredLabels.forEach((filtered)=> { %>
+
+
+                    <li><span>
+                        <%= filtered.description %>
+                      </span>
+                      <%= filtered.score %>
+                    </li>
+                    <% }) %>
+                      <% } %>
+              </div>
+              <div class="galleryuflist">
+                <span>UnFiltered List: </span> <br><br>
+                <% if (image && image.sorted && image.sorted.length> 0) { %>
+
+                  <% image.sorted.forEach((label)=> { %>
+                    <li>
+                      <span>
+                        <%= label.description %>
+                      </span>
+                      <%= label.score %>
+                    </li>
+                    <% }) %>
+                      <% } %>
+              </div>
+        </div>
         <% }) %>
-      <% } else { %>
-        <p>No images found.</p>
-      <% } %>  
-    </div>
+          <% } else { %>
+            <p>No images found.</p>
+            <% } %>
+  </div>
 
 
 
 
-    <div class="secondFooter">
-      Elanco Team 1        
-    </div>
+  <div class="secondFooter">
+    Elanco Team 1
+  </div>
 
-    
+
 
 
 
