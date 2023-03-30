@@ -8,9 +8,9 @@
 <body>
 
   
-    <% for(let i=0; i<processedImageUrls.length; i++) { %>
+    <% for(let i=0; i<imageUrls.length; i++) { %>
       <div class="Fcontainer">
-      <img src="<%= processedImageUrls[i] %>" alt="uploaded image">
+      <img src="<%= imageUrls[i] %>" alt="uploaded image">
       <% const labelsByImage = labelsList[i]; %>
       <% if (labelsByImage.newLabels.length > 0) { %>
       <div class="labels">
