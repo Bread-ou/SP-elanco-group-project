@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 </html>
 <head>
   <title>Image Labels</title>
@@ -7,10 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
 
-  
+  <div class="header">
+    <img src="views\elanco_logo.png"  alt="logo" class="centreimage" /> 
+    <div class="Item2">Previous Submissions</div>
+  </div>
+
+
     <% for(let i=0; i<processedImageUrls.length; i++) { %>
-      <div class="Fcontainer">
-      <img src="<%= processedImageUrls[i] %>" alt="uploaded image">
+      <div class="container">
+      <img src="<%= processedImageUrls[i] %>" alt="uploaded image" class = "AnimalImage">
       <% const labelsByImage = labelsList[i]; %>
       <% if (labelsByImage.newLabels.length > 0) { %>
       <div class="labels">
@@ -50,7 +54,11 @@
                 <% } %>
           <% } %>
         </div>
+      </div>
         <% } %>
-          
   </div>
+  <div class="secondFooter">
+    <a href="/gallery">Gallery</a>
+    Elanco Team 1        
+</div>
 </body>

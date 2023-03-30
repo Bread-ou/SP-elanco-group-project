@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
       const images = await Image.find()
 
-      res.render('images', { images })
+      res.render('gallery', { images })
     } catch (err) {
       console.error(err)
       res.status(500).send('Server Error')

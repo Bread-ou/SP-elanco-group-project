@@ -131,3 +131,23 @@ a:visited{
     height: 200px;
     text-align: center;
 }
+
+.labels{
+    text-align: center;
+    object-fit: contain;
+    box-sizing: border-box;
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+.label-list{
+    text-align: center;
+    object-fit: contain;
+    box-sizing: border-box;
+    float: left;
+}
+.AnimalImage{
+    object-fit: contain;
+    box-sizing: border-box;
+    float: left;
+}
