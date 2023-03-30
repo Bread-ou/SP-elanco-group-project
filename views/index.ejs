@@ -27,13 +27,13 @@
             function previewImage(event) {
                 var thumbnailsContainer = document.getElementById('thumbnails');
                 thumbnailsContainer.innerHTML = ''; // Clear the thumbnails container
-    
+
                 for (var i = 0; i < event.target.files.length; i++) {
                     var file = event.target.files[i];
                     var reader = new FileReader();
-    
-                    reader.onload = (function(file) {
-                        return function(e) {
+
+                    reader.onload = (function (file) {
+                        return function (e) {
                             var img = document.createElement('img');
                             img.src = e.target.result;
                             img.classList.add('thumbnail');
@@ -41,11 +41,12 @@
                             thumbnailsContainer.appendChild(img);
                         };
                     })(file);
-    
+
                     reader.readAsDataURL(file);
                 }
             }
         </script>
+        <a href="/gallery" class="button">View Previous Results</a>
 
         <div class="backgroundHere">
         </div>
