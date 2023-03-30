@@ -2,22 +2,23 @@ p {
     padding: 0 10px;
     line-height: 1.8;
 }
-div#header {
+.header {
     position: relative;
     background-color: #0072CE;
-    height:10%;
-    
+    height: 10%;
+
 }
-.centreimage{
-  box-sizing: border-box;
-  float: left;
-  padding-left:10px;
-  width: 15%; /* or any custom size */
-  height: 100%; 
-  object-fit: contain;
+.centreimage {
+    box-sizing: border-box;
+    float: left;
+    padding-left: 10px;
+    width: 15%;
+    /* or any custom size */
+    height: 100%;
+    object-fit: contain;
 }
 
-.previous-uploads{
+.Item2 {
     box-sizing: border-box;
     float: right;
     text-align: center;
@@ -25,41 +26,49 @@ div#header {
     justify-content: center;
     align-items: center;
     line-height: 600%;
-    height:100%;
+    height: 100%;
     padding-right: 20px;
     color: white;
 }
-.container{
+
+.container {
     background-color: #fff;
-    width:90%;
+    width: 90%;
     margin: 3.12em auto;
     padding: 3.12em 1.25em;
     border-radius: 0.43em;
     box-shadow: 0 1.25em 2.18em #4d4e50;
+    content: "";
+    clear: both;
+    display: table;
 }
-input[type="file"]{
+
+input[type="file"] {
     display: none;
 
 }
-label{
-    display:block;
-    position:relative;
+
+label {
+    display: block;
+    position: relative;
     background-color: #0072CE;
     color: #fff;
     font-size: 1.12em;
-    font-weight:500px;
-    text-align:center;
-    width:18.75em;
-    padding:1.12em 0;
-    margin:auto;
-    border-radius:0.31em;
-    cursor:pointer;
+    font-weight: 500px;
+    text-align: center;
+    width: 18.75em;
+    padding: 1.12em 0;
+    margin: auto;
+    border-radius: 0.31em;
+    cursor: pointer;
     transition: width 1s, background-color 1s;
 }
-label:hover{
-    width:19.75em ;
+
+label:hover {
+    width: 19.75em;
     background-color: #005092;
 }
+
 body {
     background-color: #e9e9e9;
     margin: 0px;
@@ -67,52 +76,79 @@ body {
     margin: 0;
     padding: 0;
 }
-a:visited{
+
+a:visited {
     color: inherit;
     text-decoration: none;
 }
- .backgroundHere{
+
+.backgroundHere {
     background-image: url('Evergreen-Header-min.png');
     height: 534px;
     width: 100%;
 }
- input[name = "image"]:invalid+input[name = "submit"]{
+
+input[name="image"]:invalid+input[name="submit"] {
     visibility: hidden;
- }
- input[type=button], input[type=submit], input[type=reset] {
+}
+
+input[type=button],
+input[type=submit],
+input[type=reset] {
     visibility: hidden;
-  }
-  .thumbnails-container {
+}
+
+.thumbnails-container {
     gap: 10px;
     text-align: center;
 }
+
 .thumbnail {
     max-width: 200px;
     max-height: 200px;
     text-align: center;
-    margin-top:15px;
-    margin-right:15px;
+    margin-top: 15px;
+    margin-right: 15px;
     border: 2px solid black;
 }
-@media screen and (max-width: 700px){
-    .backgroundHere{
-        display:none;
+
+@media screen and (max-width: 700px) {
+    .backgroundHere {
+        display: none;
     }
 }
-@media screen and (max-width: 400px){
-    .previous-uploads{
+
+@media screen and (max-width: 400px) {
+    .previous-uploads {
         line-height: 350%;
     }
 }
-.secondFooter{
+
+.secondFooter {
     background-color: #838383;
-    text-align:center;
+    text-align: center;
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 2.5rem; 
+    height: 2.5rem;
 }
+
+.smallCard{
+    box-sizing: border-box;
+    Margin-left: 4.65%;
+    Margin-right: 4.65%;
+    Margin-top: 2%;
+    Padding: 5px;
+    width: 15%;
+    float: left;
+    border-style: solid;
+    border-width: 2px;
+    object-fit: contain;
+    height: 200px;
+    text-align: center;
+}
+
 /* Flip Card */
 .flip-card {
     background-color: transparent;
@@ -193,4 +229,22 @@ a:visited{
     font-style: Sans-serif;
   }
 
-  
+.labels{
+    text-align: center;
+    object-fit: contain;
+    box-sizing: border-box;
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+.label-list{
+    text-align: center;
+    object-fit: contain;
+    box-sizing: border-box;
+    float: left;
+}
+.AnimalImage{
+    object-fit: contain;
+    box-sizing: border-box;
+    float: left;
+}

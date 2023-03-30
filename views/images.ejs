@@ -42,7 +42,7 @@
       <% images.forEach((image) => { %>
         <div>
           <% if (image && image.data) { %>
-
+          <img src="Processed:image/jpeg;base64, <%= image.data.toString('base64') %>" />
             <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
           <% } %>
 
