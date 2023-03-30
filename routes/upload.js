@@ -99,7 +99,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             const objects = objectDetectionResult.localizedObjectAnnotations
 
             // Process and save processed IMG.
-           // const processedImageUrl = await imgProcess.processImg(objects, file)
+           const processedImageUrl = await imgProcess.processImg(objects, file)
             
 
             // Sort the labels in order of highest confidence.
@@ -129,7 +129,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             // Store the number of animals for each image.
             animalNum.push(animalCount)
             // Store processed Img
-            //processedImageUrls.push(processedImageUrl)
+            processedImageUrls.push(processedImageUrl)
 
           // storing into database
           const image = new Image({ data: buffer, Processed: processedImageUrls[i], Animals: animalNum[i], FilteredLabels : labelsList[i].newLabels, sorted: labelsList[i].sortedLabels})
