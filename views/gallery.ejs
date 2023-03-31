@@ -31,7 +31,7 @@
             </div>
             <% } %>
               <div class="galleryflist">
-                <span>Filtered List: </span> <br><br>
+                <span>Related Labels: </span> <br><br>
                 <% if (image && image.FilteredLabels && image.FilteredLabels.length> 0) { %>
                   <% image.FilteredLabels.forEach((filtered)=> { %>
 
@@ -39,13 +39,19 @@
                     <li><span>
                         <%= filtered.description %>
                       </span>
-                      <%= filtered.score %>
+                      <% if (filtered.score>= 0.8) { %>
+                        <span class="confidence high-confidence">(High confidence)</span>
+                        <% } else if (filtered.score>= 0.6) { %>
+                          <span class="confidence medium-confidence">(Medium confidence)</span>
+                          <% } else { %>
+                            <span class="confidence low-confidence">(Low confidence)</span>
+                            <% } %>
                     </li>
                     <% }) %>
                       <% } %>
               </div>
               <div class="galleryuflist">
-                <span>UnFiltered List: </span> <br><br>
+                <span>Unrelated List: </span> <br><br>
                 <% if (image && image.sorted && image.sorted.length> 0) { %>
 
                   <% image.sorted.forEach((label)=> { %>
@@ -53,35 +59,28 @@
                       <span>
                         <%= label.description %>
                       </span>
-                      <%= label.score %>
+                      <% if (label.score>= 0.8) { %>
+                        <span class="confidence high-confidence">(High confidence)</span>
+                        <% } else if (label.score>= 0.6) { %>
+                          <span class="confidence medium-confidence">(Medium confidence)</span>
+                          <% } else { %>
+                            <span class="confidence low-confidence">(Low confidence)</span>
+                            <% } %>
                     </li>
                     <% }) %>
                       <% } %>
               </div>
+              <!-- <div class="galleryflist"><span>Number of Animals in picture: </span>
+                <%= image.Animals %></div> -->
         </div>
         <% }) %>
           <% } else { %>
             <p>No images found.</p>
             <% } %>
   </div>
-
-
-
-
   <div class="secondFooter">
     Elanco Team 1
   </div>
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 

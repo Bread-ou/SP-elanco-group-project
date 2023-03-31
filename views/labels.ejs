@@ -16,7 +16,7 @@
     </div>
   </div>
   <% for(let i=0; i<processedImageUrls.length; i++) { %>
-    <<<<<<< HEAD <div class="Fcontainer">
+    <<<<<<< HEAD <<<<<<< HEAD <div class="Fcontainer">
       <div class="image">
         <h2>Image :</h2>
         =======
@@ -27,57 +27,62 @@
           </div>
           <% const labelsByImage=labelsList[i]; %>
             <% if (labelsByImage.newLabels.length> 0) { %>
-
-              <% animalNum[i] %>
-                <div class="galleryflist">
-                  <h2>Filtered Labels:</h2>
-                  <ul class="labels-list">
-                    <% for(let j=0; j<labelsByImage.newLabels.length; j++) { %>
-                      <li>
-                        <%= labelsByImage.newLabels[j].description %>
-                          <% if (labelsByImage.newLabels[j].score>= 0.8) { %>
-                            <span class="confidence high-confidence">(High confidence)</span>
-                            <% } else if (labelsByImage.newLabels[j].score>= 0.6) { %>
-                              <span class="confidence medium-confidence">(Medium confidence)</span>
-                              <% } else { %>
-                                <span class="confidence low-confidence">(Low confidence)</span>
-                                <% } %>
-                      </li>
-                      <% } %>
-                  </ul>
-                  <span>Number of Animals in picture: </span>
-                  <%= animalNum[i] %>
+              =======
+              <div class="container">
+                <div class="gallery-image">
+                  <img src="data:image/jpeg;base64,<%= processedImageUrls[i].toString('base64') %>" />
                 </div>
-                <% } else { %>
-                  <div class="labels">
-                    <h2>No animals detected in this image.</h2>
-                  </div>
-                  <% } %>
-                    <div class="galleryflist">
-                      <h2>Unfiltered Labels:</h2>
-                      <ul class="labels-list">
-                        <% for(let j=0; j<labelsByImage.sortedLabels.length; j++) { %>
-                          <li>
-                            <%= labelsByImage.sortedLabels[j].description %>
-                              <% if (labelsByImage.sortedLabels[j].score>= 0.8) { %>
-                                <span class="confidence high-confidence">(High confidence)</span>
-                                <% } else if (labelsByImage.sortedLabels[j].score>= 0.6) { %>
-                                  <span class="confidence medium-confidence">(Medium confidence)</span>
-                                  <% } else { %>
-                                    <span class="confidence low-confidence">(Low confidence)</span>
-                                    <% } %>
-                          </li>
-                          <% } %>
-                    </div>
+                <% const labelsByImage=labelsList[i]; %>
+                  <% if (labelsByImage.newLabels.length> 0) { %>
+                    >>>>>>> d3b98d89feaedb000d4ed64918bcb10d9dd6cccc
+
+                    <% animalNum[i] %>
+                      <div class="galleryflist">
+                        <h2>Filtered Labels:</h2>
+                        <ul class="labels-list">
+                          <% for(let j=0; j<labelsByImage.newLabels.length; j++) { %>
+                            <li>
+                              <%= labelsByImage.newLabels[j].description %>
+                                <% if (labelsByImage.newLabels[j].score>= 0.8) { %>
+                                  <span class="confidence high-confidence">(High confidence)</span>
+                                  <% } else if (labelsByImage.newLabels[j].score>= 0.6) { %>
+                                    <span class="confidence medium-confidence">(Medium confidence)</span>
+                                    <% } else { %>
+                                      <span class="confidence low-confidence">(Low confidence)</span>
+                                      <% } %>
+                            </li>
+                            <% } %>
+                        </ul>
+                        <span>Number of Animals in picture: </span>
+                        <%= animalNum[i] %>
+                      </div>
+                      <% } else { %>
+                        <div class="labels">
+                          <h2>No animals detected in this image.</h2>
+                        </div>
+                        <% } %>
+                          <div class="galleryflist">
+                            <h2>Unfiltered Labels:</h2>
+                            <ul class="labels-list">
+                              <% for(let j=0; j<labelsByImage.sortedLabels.length; j++) { %>
+                                <li>
+                                  <%= labelsByImage.sortedLabels[j].description %>
+                                    <% if (labelsByImage.sortedLabels[j].score>= 0.8) { %>
+                                      <span class="confidence high-confidence">(High confidence)</span>
+                                      <% } else if (labelsByImage.sortedLabels[j].score>= 0.6) { %>
+                                        <span class="confidence medium-confidence">(Medium confidence)</span>
+                                        <% } else { %>
+                                          <span class="confidence low-confidence">(Low confidence)</span>
+                                          <% } %>
+                                </li>
+                                <% } %>
+                          </div>
+              </div>
+              <%}%>
+
+                </ul>
         </div>
-        <%}%>
-
-          </ul>
-      </div>
-
-
-
-      <div class="secondFooter">
-        Elanco Team 1
-      </div>
+        <div class="secondFooter">
+          Elanco Team 1
+        </div>
 </body>

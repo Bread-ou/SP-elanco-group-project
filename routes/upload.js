@@ -117,7 +117,6 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             labelsList.push(labelChecker.filterLabels(sortedLabels)) 
             
             // If there is an animal name then get the description and store it in an array.
-
             if(labelsList[i].newLabels[0] != null){
                 //console.log(labelsList[i].newLabels[0].description.toString())
                 let animalText = getDescription(labelsList[i].newLabels[0].description.toString())
