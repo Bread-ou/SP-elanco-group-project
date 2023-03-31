@@ -27,7 +27,7 @@
 
           <% animalNum[i] %>
             <div class="galleryflist">
-              <h2>Animal Related Labels: </h2>
+              <span class = "title">Animal Related Labels: </span>
               <ul class="labels-list">
                 <% for(let j=0; j<labelsByImage.newLabels.length; j++) { %>
                   <li>
@@ -42,7 +42,7 @@
                   </li>
                   <% } %>
               </ul>
-              <span>Number of Animals in picture: </span>
+              <span class = "title">Number of Animals in picture: </span>
               <%= animalNum[i] %>
             </div>
             <% } else { %>
@@ -51,7 +51,7 @@
               </div>
               <% } %>
                 <div class="galleryflist">
-                  <h2>Unrelated Labels: </h2>
+                  <span class = "title">Unrelated Labels: </span>
                   <ul class="labels-list">
                     <% for(let j=0; j<labelsByImage.sortedLabels.length; j++) { %>
                       <li>
