@@ -99,7 +99,7 @@ router.post('/', upload.array('images', 3), async (req,res)=>{
             const objects = objectDetectionResult.localizedObjectAnnotations
 
             // Process and save processed IMG.
-            const processedImageUrl = await imgProcess.processImg(objects, file)
+           const processedImageUrl = await imgProcess.processImg(objects, file)
             
 
             // Sort the labels in order of highest confidence.
