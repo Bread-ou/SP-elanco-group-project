@@ -12,7 +12,9 @@
 
 <body>
   <div class="header">
+    <a href = "/upload">
     <img src="views\elanco_logo.png" alt="logo" class="centreimage" />
+    </a>
     <div class="Item2">
       <a href="/gallery">Gallery</a>
     </div>
@@ -25,13 +27,13 @@
     <% if (images && images.length> 0) { %>
       <% images.forEach((image)=> { %>
         <div class="container">
-          <% if (image && image.data) { %>
+          <% if (image && image.Processed) { %>
             <div class="gallery-image">
-              <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+              <img src="data:image/jpeg;base64, <%= image.Processed.toString('base64') %>" />
             </div>
             <% } %>
               <div class="galleryflist">
-                <span>Related Labels: </span> <br><br>
+                <span>Animal Related Labels: </span> <br><br>
                 <% if (image && image.FilteredLabels && image.FilteredLabels.length> 0) { %>
                   <% image.FilteredLabels.forEach((filtered)=> { %>
 
@@ -51,7 +53,7 @@
                       <% } %>
               </div>
               <div class="galleryuflist">
-                <span>Unrelated List: </span> <br><br>
+                <span>Unrelated Labels: </span> <br><br>
                 <% if (image && image.sorted && image.sorted.length> 0) { %>
 
                   <% image.sorted.forEach((label)=> { %>

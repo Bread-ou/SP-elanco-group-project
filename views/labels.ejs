@@ -8,7 +8,9 @@
 
 <body>
   <div class="header">
+    <a href = "/upload">
     <img src="views\elanco_logo.png" alt="logo" class="centreimage" />
+    </a>
     <div class="Item2">
       <div class="Item2">
         <a href="/gallery">Gallery</a>
@@ -25,7 +27,7 @@
 
           <% animalNum[i] %>
             <div class="galleryflist">
-              <h2>Filtered Labels:</h2>
+              <h2>Animal Related Labels: </h2>
               <ul class="labels-list">
                 <% for(let j=0; j<labelsByImage.newLabels.length; j++) { %>
                   <li>
@@ -49,7 +51,7 @@
               </div>
               <% } %>
                 <div class="galleryflist">
-                  <h2>Unfiltered Labels:</h2>
+                  <h2>Unrelated Labels: </h2>
                   <ul class="labels-list">
                     <% for(let j=0; j<labelsByImage.sortedLabels.length; j++) { %>
                       <li>
