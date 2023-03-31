@@ -1,41 +1,86 @@
+<html lang="en">
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <link href="/views/style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="/images/elephant.jpeg" alt="Elephantacus" style="width:100%">
-        </div>
-        <div class="flip-card-back">
-          <h1>Elephant</h1>
-          <p>Grey</p>
-          <p>Big Trunk</p>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/views/style.css" rel="stylesheet" type="text/css">
+  <title>Gallery Page</title>
+</head>
+
+
+
+<body>
+  <div class="header">
+    <img src="views\elanco_logo.png" alt="logo" class="centreimage" />
+    <div class="Item2">
+      <a href="/gallery">Gallery</a>
+    </div>
+    <br><br><br>
+    <div class="container">
+      <div class="TitleGallery">
+        Previous Submissions
       </div>
     </div>
-    <div class="card">
-      <img src="/images/elephant.jpeg" alt="Elephant" style="width: 80%">
-      <h1>Elephant</h1>
-      <p class="title">Filtered Lables</p>
-      <ul class="list-style">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-      </ul>
-      <p class="title">Unfiltered Labels</p>
-      <ul class="list-style">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-      </ul>
-      <p class="title">Animal Information</p>
-      <p>This is where the inforamtion about the animal will go</p>
-    </div>    
-  </body>
+    <% if (images && images.length> 0) { %>
+      <% images.forEach((image)=> { %>
+        <div class="container">
+          <% if (image && image.data) { %>
+            <div class="gallery-image">
+              <img src="data:image/jpeg;base64, <%= image.data.toString('base64') %>" />
+            </div>
+            <% } %>
+              <div class="galleryflist">
+                <span>Related Labels: </span> <br><br>
+                <% if (image && image.FilteredLabels && image.FilteredLabels.length> 0) { %>
+                  <% image.FilteredLabels.forEach((filtered)=> { %>
+
+
+                    <li><span>
+                        <%= filtered.description %>
+                      </span>
+                      <% if (filtered.score>= 0.8) { %>
+                        <span class="confidence high-confidence">(High confidence)</span>
+                        <% } else if (filtered.score>= 0.6) { %>
+                          <span class="confidence medium-confidence">(Medium confidence)</span>
+                          <% } else { %>
+                            <span class="confidence low-confidence">(Low confidence)</span>
+                            <% } %>
+                    </li>
+                    <% }) %>
+                      <% } %>
+              </div>
+              <div class="galleryuflist">
+                <span>Unrelated List: </span> <br><br>
+                <% if (image && image.sorted && image.sorted.length> 0) { %>
+
+                  <% image.sorted.forEach((label)=> { %>
+                    <li>
+                      <span>
+                        <%= label.description %>
+                      </span>
+                      <% if (label.score>= 0.8) { %>
+                        <span class="confidence high-confidence">(High confidence)</span>
+                        <% } else if (label.score>= 0.6) { %>
+                          <span class="confidence medium-confidence">(Medium confidence)</span>
+                          <% } else { %>
+                            <span class="confidence low-confidence">(Low confidence)</span>
+                            <% } %>
+                    </li>
+                    <% }) %>
+                      <% } %>
+              </div>
+              <!-- <div class="galleryflist"><span>Number of Animals in picture: </span>
+                <%= image.Animals %></div> -->
+        </div>
+        <% }) %>
+          <% } else { %>
+            <p>No images found.</p>
+            <% } %>
+  </div>
+  <div class="secondFooter">
+    Elanco Team 1
+  </div>
+
+</body>
 </html>

@@ -2,12 +2,14 @@ p {
     padding: 0 10px;
     line-height: 1.8;
 }
+
 .header {
     position: relative;
     background-color: #0072CE;
     height: 10%;
 
 }
+
 .centreimage {
     box-sizing: border-box;
     float: left;
@@ -134,7 +136,7 @@ input[type=reset] {
     height: 2.5rem;
 }
 
-.smallCard{
+.smallCard {
     box-sizing: border-box;
     Margin-left: 4.65%;
     Margin-right: 4.65%;
@@ -237,14 +239,93 @@ input[type=reset] {
     width: 20%;
     padding: 10px;
 }
-.label-list{
+
+.label-list {
     text-align: center;
     object-fit: contain;
     box-sizing: border-box;
     float: left;
 }
-.AnimalImage{
+
+.AnimalImage {
     object-fit: contain;
     box-sizing: border-box;
     float: left;
+}
+.gallery-image img {
+    max-width: 200px;
+    max-height: 200px;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 15px;
+    border: 2px solid black;
+}
+
+.gallery-image {
+    box-sizing: border-box;
+    width: 33%;
+    float: left;
+    object-fit: contain;
+}
+
+.galleryflist {
+    box-sizing: border-box;
+    width: 33%;
+    float: left;
+    object-fit: contain;
+}
+
+.galleryuflist {
+    box-sizing: border-box;
+    width: 33%;
+    float: left;
+    object-fit: contain;
+}
+
+.TitleGallery {
+    text-align: center;
+    font-size: large;
+    font-weight: 700;
+}
+
+.galleryflist span {
+    font-weight: 800;
+}
+
+.galleryuflist span {
+    font-weight: 800;
+}
+
+.numberOfAnimals {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+    .galleryflist {
+        width: 100%;
+        text-align: center;
+        object-fit: contain;
+        padding: 10px;
+    }
+
+    .galleryuflist {
+        width: 100%;
+        text-align: center;
+        object-fit: contain;
+        padding: 10px;
+    }
+
+    .gallery-image img {
+        justify-content: center;
+        width: 100%;
+        display: grid;
+        place-items: center;
+    }
+
+    .gallery-image {
+        justify-content: center;
+        width: 100%;
+        display: grid;
+        place-items: center;
+    }
 }
