@@ -33,7 +33,7 @@
             </div>
             <% } %>
               <div class="galleryflist">
-                <span>Animal Related Labels: </span> <br><br>
+                <span class = "title">Animal Related Labels: </span> <br><br>
                 <% if (image && image.FilteredLabels && image.FilteredLabels.length> 0) { %>
                   <% image.FilteredLabels.forEach((filtered)=> { %>
 
@@ -52,11 +52,11 @@
                     <% }) %>
                       <% } %>
                       <br>
-                      <span>Number of Animals in picture: </span>
+                      <span class = "title">Number of Animals in picture: </span>
                 <%= image.Animals %>
               </div>
               <div class="galleryuflist">
-                <span>Unrelated Labels: </span> <br><br>
+                <span class = "title">Unrelated Labels: </span> <br><br>
                 <% if (image && image.sorted && image.sorted.length> 0) { %>
 
                   <% image.sorted.forEach((label)=> { %>
